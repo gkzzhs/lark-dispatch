@@ -4,8 +4,8 @@ version: 1.0.0
 description: "会后知识智能分发工作流：从会议纪要中自动提取待办、关键决策、知识要点，识别相关人，经用户确认后按人精准分发（创建任务、推送消息、沉淀知识库）。当用户需要会后分发、会议跟进、把纪要里的事情分给对应的人时使用。"
 metadata:
   requires:
-    bins: ["lark-cli"]
-    cliHelp: "lark-cli minutes --help && lark-cli vc --help && lark-cli contact --help && lark-cli task --help && lark-cli im --help && lark-cli docs --help && lark-cli wiki --help"
+    bins: ["lark-cli>=1.0.13"]
+    cliHelp: "lark-cli minutes --help && lark-cli vc --help && lark-cli contact --help && lark-cli task --help && lark-cli im --help && lark-cli docs --help && lark-cli wiki --help && lark-cli drive --help"
 ---
 
 # 会后知识智能分发工作流
@@ -292,13 +292,18 @@ lark-cli im +messages-send --as bot --chat-id "<chat_id>" \
 ### 5c: 知识 → 沉淀到知识库
 
 ```bash
-# 路径 A：创建知识库节点（推荐）
+# 路径 A：创建知识库节点（推荐，v1.0.13 起自动给用户授权）
 lark-cli wiki +node-create --space-id "my_library" --title "会议知识 | {会议标题} | {日期}"
 lark-cli docs +update --doc "<node_token>" --markdown "@knowledge.md" --mode overwrite
 
 # 路径 B：创建独立文档（降级）
 lark-cli docs +create --title "会议知识 | {会议标题} | {日期}" --markdown "@knowledge.md"
+
+# 路径 C：归档到指定文件夹（v1.0.13 新增）
+lark-cli drive +create-folder --name "会议分发归档 | {月份}" --parent "<folder_token>"
 ```
+
+> **v1.0.13 改进**：知识库节点创建后自动给用户授权，无需手动处理权限。分发报告可归档到指定云空间文件夹。
 
 **知识文档格式：**
 ```markdown
@@ -392,7 +397,8 @@ lark-cli docs +create --title "分发报告 | {会议标题} | {日期}" --markd
 | `docs +update` | `--domain docs` | 否 | 更新知识文档 |
 | `docs +fetch` | `--scope "docs:document.content:read"` | 否 | 读取纪要全文 |
 | `wiki +node-create` | `--domain wiki` | 否 | 知识库沉淀 |
-| `im +messages-send` | `--as bot` | 否 | 消息推送 |
+| `im +messages-send` | `--as bot` 或 `--as user`(v1.0.13) | 否 | 消息推送（user 身份支持发图片/文件） |
+| `drive +create-folder` | `--domain docs` | 否 | 创建归档文件夹 |
 | `vc +search` | `--scope "vc:record:readonly"` | 否 | 会议录制搜索 |
 
 ## 边界情况处理

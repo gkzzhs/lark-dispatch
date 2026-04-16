@@ -7,7 +7,7 @@
   <p align="center">
     <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="version">
     <img src="https://img.shields.io/badge/license-MIT-green" alt="license">
-    <img src="https://img.shields.io/badge/lark--cli-%3E%3D1.0.10-orange" alt="lark-cli">
+    <img src="https://img.shields.io/badge/lark--cli-%3E%3D1.0.13-orange" alt="lark-cli">
     <img src="https://img.shields.io/badge/zero%20code-pure%20SKILL.md-blueviolet" alt="zero code">
     <img src="https://img.shields.io/badge/飞书%20AI%20校园挑战赛-2026-red" alt="contest">
   </p>
@@ -106,7 +106,7 @@ lark-dispatch/
 
 ### 前置条件
 
-- [飞书 CLI](https://github.com/nicepkg/lark-cli) >= 1.0.10
+- [飞书 CLI](https://github.com/larksuite/cli) >= 1.0.13
 - 已完成 `lark-cli auth login`（user 身份）
 - 所需 Scope：`minutes:minutes.search:read`、`minutes:minutes.basic:read`、`minutes:minutes:readonly`、`minutes:minutes.artifacts:read`、`contact:contact.user:readonly`、`task:task:write`、`wiki:wiki:write`、`im:message:send`
 
