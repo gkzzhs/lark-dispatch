@@ -7,7 +7,7 @@
   <p align="center">
     <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="version">
     <img src="https://img.shields.io/badge/license-MIT-green" alt="license">
-    <img src="https://img.shields.io/badge/lark--cli-%3E%3D1.0.13-orange" alt="lark-cli">
+    <img src="https://img.shields.io/badge/lark--cli-%3E%3D1.0.13%20%7C%201.0.19-orange" alt="lark-cli">
     <img src="https://img.shields.io/badge/zero%20code-pure%20SKILL.md-blueviolet" alt="zero code">
     <img src="https://img.shields.io/badge/飞书%20AI%20校园挑战赛-2026-red" alt="contest">
   </p>
@@ -83,7 +83,7 @@ Step 6  生成报告
 | 任务创建 | `task +create` | 创建待办任务并指定负责人 |
 | 消息发送 | `im +messages-send` | 定向通知决策相关人 |
 | 文档创建 | `docs +create` | 生成分发报告 |
-| 知识库写入 | `wiki +create-node` | 沉淀知识点到知识库 |
+| 知识库写入 | `wiki +node-create` | 沉淀知识点到知识库 |
 
 ## 📁 项目结构
 
@@ -106,15 +106,21 @@ lark-dispatch/
 
 ### 前置条件
 
-- [飞书 CLI](https://github.com/larksuite/cli) >= 1.0.13
+- [飞书 CLI](https://github.com/larksuite/cli) >= 1.0.13，已验证版本：1.0.17 / 1.0.19；推荐版本：1.0.19
 - 已完成 `lark-cli auth login`（user 身份）
 - 所需 Scope：`minutes:minutes.search:read`、`minutes:minutes.basic:read`、`minutes:minutes:readonly`、`minutes:minutes.artifacts:read`、`contact:contact.user:readonly`、`task:task:write`、`wiki:wiki:write`、`im:message:send`
+- ⚠️ 本项目依赖飞书官方 CLI Skills，使用前需要先安装官方 Skills：
+  ```bash
+  npx skills add https://github.com/larksuite/cli -y -g
+  ```
 
 ### 安装
 
 将 `skills/lark-dispatch/` 目录复制到你的 Agent 的 skills 目录下即可。
 
 ### 使用
+
+#### 手动触发
 
 对你的 Agent 说：
 
@@ -123,6 +129,25 @@ lark-dispatch/
 ```
 
 Agent 会自动执行 6 步流程，在 Step 4 展示提取结果等你确认。
+
+#### 主动触发 Demo（OpenClaw cron 定时触发）
+
+本项目支持通过 OpenClaw 定时任务实现**会议结束后自动触发分发**，无需手动调用：
+
+1. 配置 cron 任务，每 30 分钟自动扫描最近结束的会议：
+   ```bash
+   openclaw cron add \
+     --name "lark-dispatch 会后会议扫描" \
+     --every 30m \
+     --session isolated \
+     --model zai/glm-5-turbo \
+     --thinking medium \
+     --light-context \
+     --no-deliver \
+     --message "检查今天已结束且有妙记的会议，若发现未分发会议，运行 lark-dispatch 工作流：提取待办、决策、知识点，生成确认草稿，不要在用户确认前创建任务或发消息。"
+   ```
+2. Agent 会自动识别刚结束的会议，提取信息并在用户确认后执行分发
+3. 支持自定义触发条件（如仅处理标记了"需要分发"标签的会议）
 
 ## 🔗 相关项目
 
