@@ -7,7 +7,7 @@
   <p align="center">
     <img src="https://img.shields.io/badge/version-1.1.0-blue" alt="version">
     <img src="https://img.shields.io/badge/license-MIT-green" alt="license">
-    <img src="https://img.shields.io/badge/lark--cli-%3E%3D1.0.13%20%7C%201.0.19-orange" alt="lark-cli">
+    <img src="https://img.shields.io/badge/lark--cli-%3E%3D1.0.13%20%7C%201.0.20-orange" alt="lark-cli">
     <img src="https://img.shields.io/badge/zero%20code-pure%20SKILL.md-blueviolet" alt="zero code">
     <img src="https://img.shields.io/badge/飞书%20AI%20校园挑战赛-2026-red" alt="contest">
   </p>
@@ -60,21 +60,21 @@ Step 6  生成报告
 
 ## 📊 效果验证
 
-**2 场独立真实会议，22 条信息提取，零失败，零误触发。**
+**3 场独立真实会议，25 条信息提取，核心分发链路零失败，零误触发。**
 
-| 指标 | 第一场（Mini Camp） | 第二场（OPC 创造营） | 累计 |
-|------|:------------------:|:------------------:|:----:|
-| 会议时长 | 2.3 小时 | 1.7 小时 | — |
-| 信息提取总数 | 10 条 | 12 条 | **22 条** |
-| 提取准确率 | 100% | 100% | **100%** |
-| 分发成功率 | 100%（4/4） | 100%（5/5） | **100%** |
-| 降级跳过 | 6 条（跨租户） | 8 条（跨租户） | 14 条 |
-| 流程中断 | 0 次 | 0 次 | **0 次** |
-| 效率提升 | 17–25x | 17–25x | — |
+| 指标 | 第一场（Mini Camp） | 第二场（OPC 创造营） | 第三场（威海OPC共创） | 累计 |
+|------|:------------------:|:------------------:|:------------------:|:----:|
+| 会议类型 | 公开直播（多租户） | 公开直播（多租户） | 企业内部（同租户） | — |
+| 信息提取总数 | 10 条 | 12 条 | 3 条 | **25 条** |
+| 提取准确率 | 100% | 100% | 100% | **100%** |
+| 分发成功率 | 100%（4/4） | 100%（5/5） | 100%（核心链路） | **100%** |
+| 降级跳过 | 6 条（跨租户） | 8 条（跨租户） | self-send 限制 | 14 条跨租户 |
+| 流程中断 | 0 次 | 0 次 | 0 次 | **0 次** |
+| 效率提升 | 17–25x | 17–25x | 17–25x | — |
 
-两场覆盖了「同租户任务可创建」和「全跨租户降级」两种极端场景，系统均稳定运行。
+三场覆盖了「多租户公开会议降级」和「企业内部同租户精准分配」两类场景，系统均稳定运行。
 
-> 完整验证数据见 [效果验证报告 v1.1.0](docs/效果验证报告.md)
+> 完整验证数据见 [效果验证报告 v1.2.1](docs/效果验证报告.md)
 
 ## 🏗️ 技术栈
 
@@ -111,7 +111,7 @@ lark-dispatch/
 
 ### 前置条件
 
-- [飞书 CLI](https://github.com/larksuite/cli) >= 1.0.13，已验证版本：1.0.17 / 1.0.19；推荐版本：1.0.19
+- [飞书 CLI](https://github.com/larksuite/cli) >= 1.0.13，已验证版本：1.0.17 / 1.0.19 / 1.0.20；推荐使用最新稳定版
 - 已完成 `lark-cli auth login`（user 身份）
 - 所需 Scope：`minutes:minutes.search:read`、`minutes:minutes.basic:read`、`minutes:minutes:readonly`、`minutes:minutes.artifacts:read`、`contact:contact.user:readonly`、`task:task:write`、`wiki:wiki:write`、`im:message:send`
 - ⚠️ 本项目依赖飞书官方 CLI Skills，使用前需要先安装官方 Skills：
@@ -153,6 +153,14 @@ Agent 会自动执行 6 步流程，在 Step 4 展示提取结果等你确认。
    ```
 2. Agent 会自动识别刚结束的会议，提取信息并在用户确认后执行分发
 3. 支持自定义触发条件（如仅处理标记了"需要分发"标签的会议）
+
+### 当前环境验证
+
+2026-04-28 在本机完成一次非破坏性验证：
+- `lark-cli --version`：1.0.20
+- `openclaw --version`：OpenClaw 2026.4.26
+- `openclaw cron add` 使用 `--disabled --no-deliver --model zai/glm-5-turbo` 创建临时任务成功，随后删除，`openclaw cron list` 确认无残留任务
+- `vc +notes`、`contact +search-user`、`task +create`、`docs +create`、`wiki +node-create`、`im +messages-send` 的 dry-run 验证通过，未创建真实任务、消息或文档
 
 ## 🔗 相关项目
 

@@ -30,7 +30,7 @@ openclaw cron add \
 | `--name "lark-dispatch 会后会议扫描"` | 定时任务名称，便于识别和管理 |
 | `--every 30m` | 每 30 分钟执行一次，可根据需要调整频率 |
 | `--session isolated` | 使用独立会话，不影响其他任务 |
-| `--model zai/glm-5-turbo` | 使用 OpenClaw 官方指定模型 |
+| `--model zai/glm-5-turbo` | 显式指定本次 cron 运行模型；不依赖当前默认模型 |
 | `--thinking medium` | 思考深度设置，平衡效果和速度 |
 | `--light-context` | 使用轻量上下文模式，减少资源消耗 |
 | `--no-deliver` | 执行结果仅展示给用户，不自动投递 |
@@ -42,7 +42,21 @@ openclaw cron add \
 3. 用户确认（或修改）后，Agent 执行分发动作
 4. 生成分发报告并通知用户
 
-## 管理命令（OpenClaw 2026.4.5 版本）
+## 当前环境参数验证（非破坏性）
+
+测试日期：2026-04-28
+
+| 项目 | 结果 |
+|------|------|
+| OpenClaw 版本 | `OpenClaw 2026.4.26 (be8c246)` |
+| cron 参数 | `--every`、`--session isolated`、`--model zai/glm-5-turbo`、`--thinking medium`、`--light-context`、`--no-deliver`、`--disabled` 均可用 |
+| 临时任务创建 | ✅ 成功，返回 disabled job |
+| 临时任务清理 | ✅ 已执行 `openclaw cron rm <job_id>` 删除 |
+| 残留检查 | ✅ `openclaw cron list` 返回 `No cron jobs.` |
+
+本次只验证 cron 配置参数和任务生命周期，不触发真实会议扫描，也不创建任务、发送消息或写入文档。下一步仍需补充一次真实 cron E2E run history 作为主动触发闭环证据。
+
+## 管理命令（OpenClaw 2026.4.26 版本）
 ```bash
 # 查看所有 cron 任务
 openclaw cron list

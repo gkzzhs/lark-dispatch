@@ -267,13 +267,14 @@ lark-cli contact +search-user --query "张三"
 
 ```bash
 # 为每条待办创建任务并分配
-lark-cli task +create --summary "<任务描述>" --due "<截止日期>" --assignee "<open_id>"
+lark-cli task +create --summary "<任务描述>" --due "2026-04-30" --assignee "<open_id>"
 ```
 
 **处理规则：**
 - 每创建一个任务，记录返回的 `task_guid` 用于分发报告
 - 责任人为"待指定"的待办：仅创建任务不分配，在分发报告中标注
 - 创建失败时记录错误，继续处理下一条，不中断
+- 截止时间优先使用 ISO 日期（如 `2026-04-30`）或带时区时间；v1.0.20 dry-run 已验证 `--due 2026-04-30` 可稳定转换为全天截止时间
 
 ### 5b: 决策 → 推送飞书消息
 
