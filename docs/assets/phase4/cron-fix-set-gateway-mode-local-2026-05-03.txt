@@ -1,0 +1,28 @@
+## before gateway.mode
+local
+
+## set gateway.mode local
+│
+◇  Config warnings ──────────────────────────────────────────────────────╮
+│                                                                        │
+│  - plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel    │
+│    plugin manifest declares openclaw-weixin without channelConfigs     │
+│    metadata; add openclaw.plugin.json#channelConfigs so config schema  │
+│    and setup surfaces work before runtime loads                        │
+│  - plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel    │
+│    plugin manifest declares openclaw-weixin without channelConfigs     │
+│    metadata; add openclaw.plugin.json#channelConfigs so config schema  │
+│    and setup surfaces work before runtime loads                        │
+│                                                                        │
+├────────────────────────────────────────────────────────────────────────╯
+Config warnings:
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+Config overwrite: /Users/wangguanhang/.openclaw/openclaw.json (sha256 f8c4e35096392d0eeb07d4ac4a1ca22143679b90aca5a7a7d22a81bdf5f8a9ea -> 25970426a2aa5ac86a0a0d699fb438ffd97bf2ecf3f1230c39c4b554c8a4bd52, backup=/Users/wangguanhang/.openclaw/openclaw.json.bak)
+Config warnings:
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+Updated gateway.mode. Restart the gateway to apply.
+
+## after gateway.mode
+local

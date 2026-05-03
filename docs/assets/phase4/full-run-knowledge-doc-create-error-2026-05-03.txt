@@ -1,0 +1,15 @@
+## failed command
+lark-cli docs +create --title "会议知识沉淀 | 威海OPC共创 | 2026-05-03" --markdown "@docs/assets/phase4/full-run-knowledge-2026-05-03.md" --format json
+
+## error
+Usage:
+  lark-cli docs +create [flags]
+
+Flags:
+      --api-version string   API version (v1|v2) (default "v1")
+      --as string            identity type: user | bot (default "user")
+      --dry-run              print request without executing
+  -h, --help                 help for +create
+  -q, --jq string            jq expression to filter JSON output
+
+Error: unknown flag: --format

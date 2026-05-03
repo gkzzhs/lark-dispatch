@@ -1,0 +1,83 @@
+Config warnings:
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+
+🦞 OpenClaw 2026.4.26 (be8c246) — I don't judge, but your missing API keys are absolutely judging you.
+
+Usage: openclaw gateway [options] [command]
+
+Run, inspect, and query the WebSocket Gateway
+
+Options:
+  --allow-unconfigured       Allow gateway start without enforcing
+                             gateway.mode=local in config (does not repair
+                             config) (default: false)
+  --auth <mode>              Gateway auth mode
+                             ("none"|"token"|"password"|"trusted-proxy")
+  --bind <mode>              Bind mode
+                             ("loopback"|"lan"|"tailnet"|"auto"|"custom").
+                             Defaults to config gateway.bind (or loopback).
+  --claude-cli-logs          Deprecated alias for --cli-backend-logs (default:
+                             false)
+  --cli-backend-logs         Only show CLI backend logs in the console (includes
+                             stdout/stderr) (default: false)
+  --compact                  Alias for "--ws-log compact" (default: false)
+  --dev                      Create a dev config + workspace if missing (no
+                             BOOTSTRAP.md) (default: false)
+  --force                    Kill any existing listener on the target port
+                             before starting (default: false)
+  -h, --help                 Display help for command
+  --password <password>      Password for auth mode=password
+  --password-file <path>     Read gateway password from file
+  --port <port>              Port for the gateway WebSocket
+  --raw-stream               Log raw model stream events to jsonl (default:
+                             false)
+  --raw-stream-path <path>   Raw stream jsonl path
+  --reset                    Reset dev config + credentials + sessions +
+                             workspace (requires --dev) (default: false)
+  --tailscale <mode>         Tailscale exposure mode ("off"|"serve"|"funnel")
+  --tailscale-reset-on-exit  Reset Tailscale serve/funnel configuration on
+                             shutdown (default: false)
+  --token <token>            Shared token required in connect.params.auth.token
+                             (default: OPENCLAW_GATEWAY_TOKEN env if set)
+  --verbose                  Verbose logging to stdout/stderr (default: false)
+  --ws-log <style>           WebSocket log style ("auto"|"full"|"compact")
+                             (default: "auto")
+
+Commands:
+  call                       Call a Gateway method
+  diagnostics                Export local support diagnostics
+  discover                   Discover gateways via Bonjour (local + wide-area if
+                             configured)
+  health                     Fetch Gateway health
+  install                    Install the Gateway service
+                             (launchd/systemd/schtasks)
+  probe                      Show gateway reachability, auth capability, and
+                             read-probe summary (local + remote)
+  restart                    Restart the Gateway service
+                             (launchd/systemd/schtasks)
+  run                        Run the WebSocket Gateway (foreground)
+  stability                  Fetch payload-free Gateway stability diagnostics
+  start                      Start the Gateway service
+                             (launchd/systemd/schtasks)
+  status                     Show gateway service status + probe
+                             connectivity/capability
+  stop                       Stop the Gateway service (launchd/systemd/schtasks)
+  uninstall                  Uninstall the Gateway service
+                             (launchd/systemd/schtasks)
+  usage-cost                 Fetch usage cost summary from session logs
+
+Examples:
+  openclaw gateway run
+    Run the gateway in the foreground.
+  openclaw gateway status
+    Show service status plus connectivity/capability.
+  openclaw gateway discover
+    Find local and wide-area gateway beacons.
+  openclaw gateway stability
+    Show recent stability diagnostics.
+  openclaw gateway call health
+    Call a gateway RPC method directly.
+
+Docs: https://docs.openclaw.ai/cli/gateway
+

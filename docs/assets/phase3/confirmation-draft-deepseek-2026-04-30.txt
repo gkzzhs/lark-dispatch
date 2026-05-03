@@ -1,0 +1,11 @@
+## confirmation draft check - DeepSeek rerun
+date: 2026-04-30 20:27 CST
+job_id: df910345-3f3c-42e6-a754-f3cca3eb538a
+run_id: manual:df910345-3f3c-42e6-a754-f3cca3eb538a:1777551960521:2
+
+Result: no confirmation draft was produced.
+Reason: cron run used DeepSeek successfully, but OpenClaw runtime file I/O tools failed to load before the meeting scan workflow could proceed.
+Runtime error from run summary: Cannot find module '.../pi-tools.before-tool-call.runtime-CT4-8YQv.js'
+Delivery status: not-delivered.
+
+Source evidence: docs/assets/phase3/cron-runs-history-deepseek-after-wait-2026-04-30.txt and docs/assets/phase3/failure-degrade-log-deepseek-2026-04-30.txt

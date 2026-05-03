@@ -1,0 +1,12 @@
+[deprecated] docs +update with v1 API is deprecated and will be removed in a future release.
+{
+  "ok": true,
+  "identity": "user",
+  "data": {
+    "doc_id": "SzgidjHdAoPNOOxPkHGcA98knzd",
+    "log_id": "202604302045296E3803EAAC44747E0204",
+    "message": "文档更新成功（overwrite模式）",
+    "mode": "overwrite",
+    "success": true
+  }
+}

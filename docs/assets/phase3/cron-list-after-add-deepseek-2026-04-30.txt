@@ -1,0 +1,5 @@
+Config warnings:
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+ID                                   Name                     Schedule                         Next       Last       Status    Target    Delivery                                                         Agent ID   Model               
+df910345-3f3c-42e6-a754-f3cca3eb538a lark-dispatch 会后会议扫描 ... every 30m                        in 30m     -          idle      isolated  -                                                                -          deepseek/deepseek...

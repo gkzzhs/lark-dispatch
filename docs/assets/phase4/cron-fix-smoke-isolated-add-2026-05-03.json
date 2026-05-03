@@ -1,0 +1,36 @@
+Config warnings:
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+{
+  "id": "f4011d8a-1225-4835-b35c-bb54896c8801",
+  "name": "lark-dispatch cron smoke isolated read",
+  "enabled": true,
+  "createdAtMs": 1777773968605,
+  "updatedAtMs": 1777773968605,
+  "schedule": {
+    "kind": "every",
+    "everyMs": 21600000,
+    "anchorMs": 1777773968605
+  },
+  "sessionTarget": "isolated",
+  "wakeMode": "now",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "SMOKE TEST ONLY. Do not use Feishu or lark-cli. Work in /Users/wangguanhang/Documents/飞书校园AI挑战赛/lark-dispatch. Read README.md and report: current working directory, whether README.md is readable, and the first heading. Do not modify any files.",
+    "model": "deepseek/deepseek-chat",
+    "thinking": "low",
+    "timeoutSeconds": 180,
+    "lightContext": true,
+    "toolsAllow": [
+      "read",
+      "exec"
+    ]
+  },
+  "delivery": {
+    "mode": "none",
+    "channel": "last"
+  },
+  "state": {
+    "nextRunAtMs": 1777795568605
+  }
+}

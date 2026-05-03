@@ -1,0 +1,199 @@
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██░▄▄▄░██░▄▄░██░▄▄▄██░▀██░██░▄▄▀██░████░▄▄▀██░███░██
+██░███░██░▀▀░██░▄▄▄██░█░█░██░█████░████░▀▀░██░█░█░██
+██░▀▀▀░██░█████░▀▀▀██░██▄░██░▀▀▄██░▀▀░█░██░██▄▀▄▀▄██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+                  🦞 OPENCLAW 🦞                    
+ 
+┌  OpenClaw doctor
+│
+◇  Config warnings ──────────────────────────────────────────────────────╮
+│                                                                        │
+│  - plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel    │
+│    plugin manifest declares openclaw-weixin without channelConfigs     │
+│    metadata; add openclaw.plugin.json#channelConfigs so config schema  │
+│    and setup surfaces work before runtime loads                        │
+│  - plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel    │
+│    plugin manifest declares openclaw-weixin without channelConfigs     │
+│    metadata; add openclaw.plugin.json#channelConfigs so config schema  │
+│    and setup surfaces work before runtime loads                        │
+│                                                                        │
+├────────────────────────────────────────────────────────────────────────╯
+[openai-codex] Token refresh failed: 403 {"error":{"code":"unsupported_country_region_territory","message":"Country, region, or territory not supported","param":null,"type":"request_forbidden"}}
+│
+◇  OAuth refresh errors ──────────────────────────────────────────────────╮
+│                                                                         │
+│  - openai-codex:default: OAuth refresh failed — Try again; if this      │
+│    persists, run `openclaw models auth login --provider openai-codex`.  │
+│                                                                         │
+├─────────────────────────────────────────────────────────────────────────╯
+│
+◇  Model auth ──────────────────────────────────────────────────────────╮
+│                                                                       │
+│  - openai-codex:default: expired (0m) — Re-auth via `openclaw models  │
+│    auth login --provider openai-codex` or `openclaw configure`.       │
+│                                                                       │
+├───────────────────────────────────────────────────────────────────────╯
+│
+◇  Plugin registry ────────────────────────────────────────────╮
+│                                                              │
+│  Plugin registry refreshed: 68/116 enabled plugins indexed.  │
+│                                                              │
+├──────────────────────────────────────────────────────────────╯
+Config warnings:
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+│
+◇  State integrity ───────────────────────────────────────────────────────╮
+│                                                                         │
+│  - OAuth dir not present (~/.openclaw/credentials). Skipping create     │
+│    because no WhatsApp/pairing channel config is active.                │
+│  - 2/5 recent sessions are missing transcripts.                         │
+│    Verify sessions in store: openclaw sessions --store                  │
+│    "/Users/wangguanhang/.openclaw/agents/main/sessions/sessions.json"   │
+│    Preview cleanup impact: openclaw sessions cleanup --store            │
+│    "/Users/wangguanhang/.openclaw/agents/main/sessions/sessions.json"   │
+│    --dry-run                                                            │
+│    Prune missing entries: openclaw sessions cleanup --store             │
+│    "/Users/wangguanhang/.openclaw/agents/main/sessions/sessions.json"   │
+│    --enforce --fix-missing                                              │
+│  - Found 1 orphan transcript file in ~/.openclaw/agents/main/sessions.  │
+│    These .jsonl files are no longer referenced by sessions.json, so     │
+│    they are not part of any active session history.                     │
+│    Doctor can archive them safely by renaming each file to              │
+│    *.deleted.<timestamp>.                                               │
+│    Examples: 517aa538-c17c-430b-a0ce-29e5a1f09940.jsonl                 │
+│                                                                         │
+├─────────────────────────────────────────────────────────────────────────╯
+│
+◇  Doctor changes ──────────────────────────────────────────────────────╮
+│                                                                       │
+│  - Archived 1 orphan transcript file in                               │
+│    ~/.openclaw/agents/main/sessions as .deleted timestamped backups.  │
+│                                                                       │
+├───────────────────────────────────────────────────────────────────────╯
+│
+◇  Gateway service config ────────────────────────╮
+│                                                 │
+│  - Gateway service PATH missing required dirs:  │
+│    /Users/wangguanhang/.nix-profile/bin         │
+│                                                 │
+├─────────────────────────────────────────────────╯
+
+Installed LaunchAgent: /Users/wangguanhang/Library/LaunchAgents/ai.openclaw.gateway.plist
+Logs: /Users/wangguanhang/.openclaw/logs/gateway.log
+│
+◇  Security ─────────────────────────────────╮
+│                                            │
+│  - No channel security warnings detected.  │
+│  - Run: openclaw security audit --deep     │
+│                                            │
+├────────────────────────────────────────────╯
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-approval resolved=~/.agents/skills/lark-approval
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-attendance resolved=~/.agents/skills/lark-attendance
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-base resolved=~/.agents/skills/lark-base
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-calendar resolved=~/.agents/skills/lark-calendar
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-contact resolved=~/.agents/skills/lark-contact
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-doc resolved=~/.agents/skills/lark-doc
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-drive resolved=~/.agents/skills/lark-drive
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-event resolved=~/.agents/skills/lark-event
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-im resolved=~/.agents/skills/lark-im
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-mail resolved=~/.agents/skills/lark-mail
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-minutes resolved=~/.agents/skills/lark-minutes
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-okr resolved=~/.agents/skills/lark-okr
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-openapi-explorer resolved=~/.agents/skills/lark-openapi-explorer
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-retro resolved=~/.agents/skills/lark-retro
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-shared resolved=~/.agents/skills/lark-shared
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-sheets resolved=~/.agents/skills/lark-sheets
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-skill-maker resolved=~/.agents/skills/lark-skill-maker
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-slides resolved=~/.agents/skills/lark-slides
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-task resolved=~/.agents/skills/lark-task
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-vc resolved=~/.agents/skills/lark-vc
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-whiteboard resolved=~/.agents/skills/lark-whiteboard
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-whiteboard-cli resolved=~/.agents/skills/lark-whiteboard-cli
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-wiki resolved=~/.agents/skills/lark-wiki
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-workflow-meeting-summary resolved=~/.agents/skills/lark-workflow-meeting-summary
+[skills] Skipping escaped skill path outside its configured root: source=openclaw-managed root=~/.openclaw/skills reason=symlink-escape requested=~/.openclaw/skills/lark-workflow-standup-report resolved=~/.agents/skills/lark-workflow-standup-report
+│
+◇  Skills status ────────────╮
+│                            │
+│  Eligible: 83              │
+│  Missing requirements: 43  │
+│  Blocked by allowlist: 0   │
+│                            │
+├────────────────────────────╯
+│
+◇  Plugins ──────╮
+│                │
+│  Loaded: 68    │
+│  Imported: 0   │
+│  Disabled: 48  │
+│  Errors: 0     │
+│                │
+├────────────────╯
+│
+◇  Plugin diagnostics ─────────────────────────────────────────────────────────╮
+│                                                                              │
+│  - WARN openclaw-weixin: channel plugin manifest declares                    │
+│    openclaw-weixin without channelConfigs metadata; add                      │
+│    openclaw.plugin.json#channelConfigs so config schema and setup            │
+│    surfaces work before runtime loads                                        │
+│    (/Users/wangguanhang/.openclaw/extensions/openclaw-weixin/openclaw.plugi  │
+│  n.json)                                                                     │
+│                                                                              │
+├──────────────────────────────────────────────────────────────────────────────╯
+│
+◇  Gateway ──────────────╮
+│                        │
+│  Gateway not running.  │
+│                        │
+├────────────────────────╯
+│
+◇  Gateway connection ──────────────────────────────────╮
+│                                                       │
+│  Gateway target: ws://127.0.0.1:18789                 │
+│  Source: local loopback                               │
+│  Config: /Users/wangguanhang/.openclaw/openclaw.json  │
+│  Bind: loopback                                       │
+│                                                       │
+├───────────────────────────────────────────────────────╯
+│
+◇  Gateway ─────────────────────────────────────────────────────────╮
+│                                                                   │
+│  Last gateway error: 2026-03-31T21:49:16.062+08:00 Gateway start  │
+│  blocked: set gateway.mode=local (current: unset) or pass         │
+│  --allow-unconfigured.                                            │
+│                                                                   │
+├───────────────────────────────────────────────────────────────────╯
+│
+◇  Gateway ──────────────────────╮
+│                                │
+│  Runtime: running (pid 27298)  │
+│                                │
+├────────────────────────────────╯
+│
+◇  Gateway ──────────────────────────────────────────────────────────╮
+│                                                                    │
+│  LaunchAgent loaded; stopping requires "openclaw gateway stop" or  │
+│  launchctl bootout gui/$UID/ai.openclaw.gateway.                   │
+│                                                                    │
+├────────────────────────────────────────────────────────────────────╯
+Restarted LaunchAgent: gui/501/ai.openclaw.gateway
+│
+◇  Gateway ──────────────╮
+│                        │
+│  Gateway not running.  │
+│                        │
+├────────────────────────╯
+│
+◇  Gateway connection ──────────────────────────────────╮
+│                                                       │
+│  Gateway target: ws://127.0.0.1:18789                 │
+│  Source: local loopback                               │
+│  Config: /Users/wangguanhang/.openclaw/openclaw.json  │
+│  Bind: loopback                                       │
+│                                                       │
+├───────────────────────────────────────────────────────╯
+│
+└  Doctor complete.
+

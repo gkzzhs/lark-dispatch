@@ -1,0 +1,8 @@
+{
+  "ok": true,
+  "identity": "user",
+  "data": {
+    "guid": "2178db00-92a8-4044-9bbf-a0321ee9beed",
+    "url": "https://applink.feishu.cn/client/todo/detail?guid=2178db00-92a8-4044-9bbf-a0321ee9beed"
+  }
+}

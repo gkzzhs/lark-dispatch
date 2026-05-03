@@ -1,0 +1,46 @@
+## cron run failure / downgrade log
+job_id: 9bf1d166-cc73-4255-a826-d176770d16c1
+run_id: manual:9bf1d166-cc73-4255-a826-d176770d16c1:1777551529421:1
+
+## cron runs history
+Config warnings:
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+{
+  "entries": [
+    {
+      "ts": 1777551540140,
+      "jobId": "9bf1d166-cc73-4255-a826-d176770d16c1",
+      "action": "finished",
+      "status": "error",
+      "error": "FallbackSummaryError: All models failed (4): zai/glm-5-turbo: No API key found for provider \"zai\". Auth store: /Users/wangguanhang/.openclaw/agents/main/agent/auth-profiles.json (agentDir: /Users/wangguanhang/.openclaw/agents/main/agent). Configure auth for this agent (openclaw agents add <id>) or copy auth-profiles.json from the main agentDir. (auth) | zai/glm-5: No API key found for provider \"zai\". Auth store: /Users/wangguanhang/.openclaw/agents/main/agent/auth-profiles.json (agentDir: /Users/wangguanhang/.openclaw/agents/main/agent). Configure auth for this agent (openclaw agents add <id>) or copy auth-profiles.json from the main agentDir. (auth) | zai/glm-5.1: No API key found for provider \"zai\". Auth store: /Users/wangguanhang/.openclaw/agents/main/agent/auth-profiles.json (agentDir: /Users/wangguanhang/.openclaw/agents/main/agent). Configure auth for this agent (openclaw agents add <id>) or copy auth-profiles.json from the main agentDir. (auth) | openai-codex/gpt-5.4: OAuth token refresh failed for openai-codex: Failed to refresh OpenAI Codex token. Please try again or re-authenticate. (auth)",
+      "runAtMs": 1777551529423,
+      "durationMs": 10710,
+      "nextRunAtMs": 1777553281872,
+      "deliveryStatus": "not-requested",
+      "sessionId": "349e4d4b-111c-4c06-a25d-ab1010932e4d",
+      "sessionKey": "agent:main:cron:9bf1d166-cc73-4255-a826-d176770d16c1:run:349e4d4b-111c-4c06-a25d-ab1010932e4d"
+    }
+  ],
+  "total": 1,
+  "offset": 0,
+  "limit": 50,
+  "hasMore": false,
+  "nextOffset": null
+}
+
+## cron show after disable
+Config warnings:
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+id: 9bf1d166-cc73-4255-a826-d176770d16c1
+name: lark-dispatch 会后会议扫描
+enabled: no
+schedule: every 30m
+session: isolated
+agent: -
+model: zai/glm-5-turbo
+delivery: - (unavailable)
+next: -
+last: 1m ago
+status: disabled

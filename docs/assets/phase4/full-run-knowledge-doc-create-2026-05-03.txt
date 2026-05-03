@@ -1,0 +1,11 @@
+[deprecated] docs +create with v1 API is deprecated and will be removed in a future release.
+{
+  "ok": true,
+  "identity": "user",
+  "data": {
+    "doc_id": "RjOMdkFEKoFhb3xmRSac94kZn2b",
+    "doc_url": "https://www.feishu.cn/docx/RjOMdkFEKoFhb3xmRSac94kZn2b",
+    "log_id": "2026050309545420E539F5D764C3813B1F",
+    "message": "文档创建成功"
+  }
+}

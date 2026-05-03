@@ -1,0 +1,38 @@
+No --agent specified; the job will run with the configured default agent. Specify --agent to choose a specific agent.
+Config warnings:
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: duplicate plugin id detected; global plugin will be overridden by global plugin (/Users/wangguanhang/.openclaw/npm/node_modules/@tencent-weixin/openclaw-weixin/index.ts)
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+{
+  "id": "96c33192-565b-4dfb-8003-f09358dbb28d",
+  "name": "lark-dispatch cron draft only v2026.5.2",
+  "enabled": true,
+  "createdAtMs": 1777774741103,
+  "updatedAtMs": 1777774741103,
+  "schedule": {
+    "kind": "every",
+    "everyMs": 21600000,
+    "anchorMs": 1777774741103
+  },
+  "sessionTarget": "isolated",
+  "wakeMode": "now",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "DRAFT ONLY VALIDATION for lark-dispatch. Do not create Feishu tasks, do not send IM, do not create or update docs, and do not modify local files. Work in /Users/wangguanhang/Documents/飞书校园AI挑战赛/lark-dispatch. Read the real Feishu minutes by running: lark-cli vc +notes --minute-tokens obcn27xt34ox9s245x877j56 --format json. Then generate a confirmation draft in your final summary with: meeting title, action items, decisions, knowledge points, related people if present, and an explicit safety gate saying no task/message/doc/report will be created before user confirmation. If lark-cli fails, report the raw error. This is cron draft validation only.",
+    "model": "deepseek/deepseek-chat",
+    "thinking": "medium",
+    "timeoutSeconds": 180,
+    "lightContext": true,
+    "toolsAllow": [
+      "read",
+      "exec"
+    ]
+  },
+  "delivery": {
+    "mode": "none",
+    "channel": "last"
+  },
+  "state": {
+    "nextRunAtMs": 1777796341103
+  }
+}

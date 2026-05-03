@@ -1,0 +1,12 @@
+## confirmation draft check - DeepSeek after gateway restart rerun
+date: 2026-04-30 20:37 CST
+job_id: 34ff49d2-08f7-4ea7-ba67-1d02ec63cbb0
+run_id: manual:34ff49d2-08f7-4ea7-ba67-1d02ec63cbb0:1777552461164:1
+
+Result: no confirmation draft was produced.
+Reason: cron run was interrupted by gateway restart before meeting scan / draft generation could complete.
+Run history status: error.
+Run history error: cron: job interrupted by gateway restart.
+Delivery status: unknown.
+
+Source evidence: docs/assets/phase3/cron-runs-history-deepseek-after-restart-final-2026-04-30.txt

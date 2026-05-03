@@ -1,0 +1,25 @@
+Config warnings:
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+{
+  "entries": [
+    {
+      "ts": 1777552634942,
+      "jobId": "34ff49d2-08f7-4ea7-ba67-1d02ec63cbb0",
+      "action": "finished",
+      "status": "error",
+      "error": "cron: job interrupted by gateway restart",
+      "runAtMs": 1777552461165,
+      "durationMs": 173751,
+      "nextRunAtMs": 1777554261165,
+      "delivered": false,
+      "deliveryStatus": "unknown",
+      "deliveryError": "cron: job interrupted by gateway restart"
+    }
+  ],
+  "total": 1,
+  "offset": 0,
+  "limit": 50,
+  "hasMore": false,
+  "nextOffset": null
+}

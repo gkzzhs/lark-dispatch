@@ -1,0 +1,9 @@
+## confirmation draft check
+date: 2026-04-30 20:20 CST
+job_id: 9bf1d166-cc73-4255-a826-d176770d16c1
+run_id: manual:9bf1d166-cc73-4255-a826-d176770d16c1:1777551529421:1
+
+Result: no confirmation draft was produced.
+Reason: cron run failed before agent workflow execution because model authentication failed.
+
+Source evidence: docs/assets/phase3/cron-runs-history-2026-04-30.txt and docs/assets/phase3/failure-degrade-log-2026-04-30.txt

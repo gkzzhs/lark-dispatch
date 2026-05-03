@@ -1,0 +1,42 @@
+{
+  "ok": true,
+  "identity": "user",
+  "data": {
+    "users": [
+      {
+        "open_id": "ou_57dfe4444da6d910fe5df911784ef51e",
+        "localized_name": "王冠行",
+        "email": "",
+        "enterprise_email": "",
+        "is_activated": true,
+        "is_cross_tenant": false,
+        "p2p_chat_id": "oc_c436b7e66981eebbb15932b306a5921c",
+        "has_chatted": true,
+        "department": "",
+        "chat_recency_hint": "",
+        "match_segments": [
+          "王冠行"
+        ]
+      },
+      {
+        "open_id": "ou_c17ae1b3dc98a5dcd6e869d899707f5d",
+        "localized_name": "王冠行",
+        "email": "",
+        "enterprise_email": "",
+        "is_activated": true,
+        "is_cross_tenant": true,
+        "p2p_chat_id": "oc_ca2752dd467518a5b5c5bddf77676ef9",
+        "has_chatted": true,
+        "department": "玥儿湾度假酒店",
+        "chat_recency_hint": "Contacted yesterday",
+        "match_segments": [
+          "王冠行"
+        ]
+      }
+    ],
+    "has_more": false
+  },
+  "meta": {
+    "count": 2
+  }
+}

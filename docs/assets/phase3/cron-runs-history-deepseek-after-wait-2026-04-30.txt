@@ -1,0 +1,33 @@
+Config warnings:
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+{
+  "entries": [
+    {
+      "ts": 1777551981177,
+      "jobId": "df910345-3f3c-42e6-a754-f3cca3eb538a",
+      "action": "finished",
+      "status": "ok",
+      "summary": "The runtime module loading is broken right now — all file I/O tools are failing with the same internal error. I can't proceed with the meeting scan workflow this cycle.\n\n**Error:** `Cannot find module '.../pi-tools.before-tool-call.runtime-CT4-8YQv.js'`\n\nThis is an OpenClaw internal issue likely caused by a stale/partial dist build after an update. A gateway restart might fix it.\n\nCould you run `openclaw gateway restart` when you get a chance? I'll retry the meeting scan on the next heartbeat cycle.",
+      "runAtMs": 1777551960523,
+      "durationMs": 20653,
+      "nextRunAtMs": 1777553715449,
+      "model": "deepseek-chat",
+      "provider": "deepseek",
+      "usage": {
+        "input_tokens": 20331,
+        "output_tokens": 1074,
+        "total_tokens": 20555
+      },
+      "delivered": false,
+      "deliveryStatus": "not-delivered",
+      "sessionId": "e98d789d-9681-4150-9dac-bf4c213d41d7",
+      "sessionKey": "agent:main:cron:df910345-3f3c-42e6-a754-f3cca3eb538a:run:e98d789d-9681-4150-9dac-bf4c213d41d7"
+    }
+  ],
+  "total": 1,
+  "offset": 0,
+  "limit": 50,
+  "hasMore": false,
+  "nextOffset": null
+}

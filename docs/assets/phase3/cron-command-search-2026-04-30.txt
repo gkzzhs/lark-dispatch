@@ -1,0 +1,90 @@
+## cron command search
+README.md-139-Agent 会自动执行 6 步流程，在 Step 4 展示提取结果等你确认。
+README.md-140-
+README.md-141-#### 主动触发 Demo（OpenClaw cron 定时触发）
+README.md-142-
+README.md-143-本项目支持通过 OpenClaw 定时任务实现**会议结束后自动触发分发**，无需手动调用：
+README.md-144-
+README.md-145-1. 配置 cron 任务，每 30 分钟自动扫描最近结束的会议：
+README.md-146-   ```bash
+README.md:147:   openclaw cron add \
+README.md-148-     --name "lark-dispatch 会后会议扫描" \
+README.md-149-     --every 30m \
+README.md-150-     --session isolated \
+README.md:151:     --model zai/glm-5-turbo \
+README.md-152-     --thinking medium \
+README.md-153-     --light-context \
+README.md:154:     --no-deliver \
+README.md:155:     --message "检查今天已结束且有妙记的会议，若发现未分发会议，运行 lark-dispatch 工作流：提取待办、决策、知识点，生成确认草稿，不要在用户确认前创建任务或发消息。"
+README.md-156-   ```
+README.md-157-2. Agent 会自动识别刚结束的会议，提取信息并在用户确认后执行分发
+README.md-158-3. 支持自定义触发条件（如仅处理标记了"需要分发"标签的会议）
+README.md-159-
+README.md-160-### 当前环境验证
+README.md-161-
+README.md-162-2026-04-28 在本机完成一次非破坏性验证：
+README.md-163-- `lark-cli --version`：1.0.20
+README.md-164-- `openclaw --version`：OpenClaw 2026.4.26
+README.md:165:- `openclaw cron add` 使用 `--disabled --no-deliver --model zai/glm-5-turbo` 创建临时任务成功，随后删除，`openclaw cron list` 确认无残留任务
+README.md-166-- `vc +notes`、`contact +search-user`、`task +create`、`docs +create`、`wiki +node-create`、`im +messages-send` 的 dry-run 验证通过，未创建真实任务、消息或文档
+README.md-167-
+README.md-168-## 🔗 相关项目
+README.md-169-
+README.md-170-- [lark-retro](https://github.com/gkzzhs/lark-retro) — 基于飞书 CLI 的 AI 回顾 & 周报工作流（lark-dispatch 的前身）
+README.md-171-- [飞书 CLI](https://github.com/nicepkg/lark-cli) — 飞书命令行工具
+README.md-172-
+README.md-173-## 🏆 参赛信息
+--
+docs/主动触发Demo.md-8-- 对未分发的会议自动运行 lark-dispatch 工作流
+docs/主动触发Demo.md-9-- 提取待办、决策、知识点，生成确认草稿
+docs/主动触发Demo.md-10-- **严格遵循"先确认后执行"原则**：不会在用户确认前创建任务或发送消息
+docs/主动触发Demo.md-11-
+docs/主动触发Demo.md-12-## 配置命令
+docs/主动触发Demo.md-13-使用以下命令创建定时触发任务：
+docs/主动触发Demo.md-14-
+docs/主动触发Demo.md-15-```bash
+docs/主动触发Demo.md:16:openclaw cron add \
+docs/主动触发Demo.md-17-  --name "lark-dispatch 会后会议扫描" \
+docs/主动触发Demo.md-18-  --every 30m \
+docs/主动触发Demo.md-19-  --session isolated \
+docs/主动触发Demo.md:20:  --model zai/glm-5-turbo \
+docs/主动触发Demo.md-21-  --thinking medium \
+docs/主动触发Demo.md-22-  --light-context \
+docs/主动触发Demo.md:23:  --no-deliver \
+docs/主动触发Demo.md:24:  --message "检查今天已结束且有妙记的会议，若发现未分发会议，运行 lark-dispatch 工作流：提取待办、决策、知识点，生成确认草稿，不要在用户确认前创建任务或发消息。"
+docs/主动触发Demo.md-25-```
+docs/主动触发Demo.md-26-
+docs/主动触发Demo.md-27-## 参数说明
+docs/主动触发Demo.md-28-| 参数 | 说明 |
+docs/主动触发Demo.md-29-|------|------|
+docs/主动触发Demo.md-30-| `--name "lark-dispatch 会后会议扫描"` | 定时任务名称，便于识别和管理 |
+docs/主动触发Demo.md-31-| `--every 30m` | 每 30 分钟执行一次，可根据需要调整频率 |
+docs/主动触发Demo.md-32-| `--session isolated` | 使用独立会话，不影响其他任务 |
+docs/主动触发Demo.md:33:| `--model zai/glm-5-turbo` | 显式指定本次 cron 运行模型；不依赖当前默认模型 |
+docs/主动触发Demo.md-34-| `--thinking medium` | 思考深度设置，平衡效果和速度 |
+docs/主动触发Demo.md-35-| `--light-context` | 使用轻量上下文模式，减少资源消耗 |
+docs/主动触发Demo.md:36:| `--no-deliver` | 执行结果仅展示给用户，不自动投递 |
+docs/主动触发Demo.md:37:| `--message "..."` | 执行的具体任务指令 |
+docs/主动触发Demo.md-38-
+docs/主动触发Demo.md-39-## 效果演示
+docs/主动触发Demo.md-40-1. 会议结束后，最长 30 分钟内 Agent 会自动识别到新会议
+docs/主动触发Demo.md-41-2. Agent 向用户发送确认消息，展示提取的待办、决策、知识点
+docs/主动触发Demo.md-42-3. 用户确认（或修改）后，Agent 执行分发动作
+docs/主动触发Demo.md-43-4. 生成分发报告并通知用户
+docs/主动触发Demo.md-44-
+docs/主动触发Demo.md-45-## 当前环境参数验证（非破坏性）
+docs/主动触发Demo.md-46-
+docs/主动触发Demo.md-47-测试日期：2026-04-28
+docs/主动触发Demo.md-48-
+docs/主动触发Demo.md-49-| 项目 | 结果 |
+docs/主动触发Demo.md-50-|------|------|
+docs/主动触发Demo.md-51-| OpenClaw 版本 | `OpenClaw 2026.4.26 (be8c246)` |
+docs/主动触发Demo.md:52:| cron 参数 | `--every`、`--session isolated`、`--model zai/glm-5-turbo`、`--thinking medium`、`--light-context`、`--no-deliver`、`--disabled` 均可用 |
+docs/主动触发Demo.md-53-| 临时任务创建 | ✅ 成功，返回 disabled job |
+docs/主动触发Demo.md-54-| 临时任务清理 | ✅ 已执行 `openclaw cron rm <job_id>` 删除 |
+docs/主动触发Demo.md-55-| 残留检查 | ✅ `openclaw cron list` 返回 `No cron jobs.` |
+docs/主动触发Demo.md-56-
+docs/主动触发Demo.md-57-本次只验证 cron 配置参数和任务生命周期，不触发真实会议扫描，也不创建任务、发送消息或写入文档。下一步仍需补充一次真实 cron E2E run history 作为主动触发闭环证据。
+docs/主动触发Demo.md-58-
+docs/主动触发Demo.md-59-## 真实 E2E 验证清单（第三周期 P0）
+docs/主动触发Demo.md-60-

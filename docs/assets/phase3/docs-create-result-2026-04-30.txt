@@ -1,0 +1,25 @@
+## create knowledge document
+[deprecated] docs +create with v1 API is deprecated and will be removed in a future release.
+{
+  "ok": true,
+  "identity": "user",
+  "data": {
+    "doc_id": "OWUSdMxBBohbhFx3ObccOLAVnlg",
+    "doc_url": "https://www.feishu.cn/docx/OWUSdMxBBohbhFx3ObccOLAVnlg",
+    "log_id": "20260430204340BBA13414E09E888553CC",
+    "message": "文档创建成功"
+  }
+}
+
+## create dispatch report document
+[deprecated] docs +create with v1 API is deprecated and will be removed in a future release.
+{
+  "ok": true,
+  "identity": "user",
+  "data": {
+    "doc_id": "SzgidjHdAoPNOOxPkHGcA98knzd",
+    "doc_url": "https://www.feishu.cn/docx/SzgidjHdAoPNOOxPkHGcA98knzd",
+    "log_id": "20260430204342D58AA57FCDA7148237B7",
+    "message": "文档创建成功"
+  }
+}

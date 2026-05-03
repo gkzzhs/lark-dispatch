@@ -1,0 +1,38 @@
+No --agent specified; the job will run with the configured default agent. Specify --agent to choose a specific agent.
+Config warnings:
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: duplicate plugin id detected; global plugin will be overridden by global plugin (/Users/wangguanhang/.openclaw/npm/node_modules/@tencent-weixin/openclaw-weixin/index.ts)
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+{
+  "id": "f512fe69-7081-4310-851e-21c3e0b58fac",
+  "name": "lark-dispatch cron smoke isolated read v2026.5.2",
+  "enabled": true,
+  "createdAtMs": 1777774650328,
+  "updatedAtMs": 1777774650328,
+  "schedule": {
+    "kind": "every",
+    "everyMs": 21600000,
+    "anchorMs": 1777774650328
+  },
+  "sessionTarget": "isolated",
+  "wakeMode": "now",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "SMOKE TEST ONLY. Do not use Feishu or lark-cli. Work in /Users/wangguanhang/Documents/飞书校园AI挑战赛/lark-dispatch. Read README.md and report: current working directory, whether README.md is readable, and the first heading. Do not modify any files.",
+    "model": "deepseek/deepseek-chat",
+    "thinking": "low",
+    "timeoutSeconds": 90,
+    "lightContext": true,
+    "toolsAllow": [
+      "read",
+      "exec"
+    ]
+  },
+  "delivery": {
+    "mode": "none",
+    "channel": "last"
+  },
+  "state": {
+    "nextRunAtMs": 1777796250328
+  }
+}

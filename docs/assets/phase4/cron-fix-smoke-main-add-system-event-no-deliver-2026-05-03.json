@@ -1,0 +1,24 @@
+Config warnings:
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+{
+  "id": "cc94d9bd-b3bc-49ea-998a-322c5eef4f18",
+  "name": "lark-dispatch cron smoke main read",
+  "enabled": true,
+  "createdAtMs": 1777774292806,
+  "updatedAtMs": 1777774292806,
+  "schedule": {
+    "kind": "every",
+    "everyMs": 21600000,
+    "anchorMs": 1777774292806
+  },
+  "sessionTarget": "main",
+  "wakeMode": "now",
+  "payload": {
+    "kind": "systemEvent",
+    "text": "SMOKE TEST ONLY. Do not use Feishu or lark-cli. In /Users/wangguanhang/Documents/飞书校园AI挑战赛/lark-dispatch, read README.md and report whether it is readable and the first heading. Do not modify files."
+  },
+  "state": {
+    "nextRunAtMs": 1777795892806
+  }
+}

@@ -1,0 +1,24 @@
+[vc +notes] querying 1 minute_token(s)
+[vc +notes] querying minute_token=obcn27xt34ox9s245x877j56 ...
+[vc +notes] fetching AI artifacts...
+[vc +notes] downloading transcript: minutes/obcn27xt34ox9s245x877j56/transcript.txt
+[vc +notes] done: 1 total, 1 succeeded, 0 failed
+{
+  "ok": true,
+  "identity": "user",
+  "data": {
+    "notes": [
+      {
+        "artifacts": {
+          "summary": "视频主要围绕会议进入问题及设备投屏需求展开讨论，内容如下：\n- **会议进入问题处理**\n    - **问题判断**：午休（王牧羊）认为程光老师可能因网络不好重复进入会议，且未达到限额。\n    - **解决方案**：小萌要求王冠行将程光老师踢出会议，并在群里告知其重新进入。\n- **设备投屏需求**\n    - **需求提出**：用户 662670 表示想进两个设备，以便进行投屏操作。\n    - **后续安排**：小萌让用户 662670 自行尝试操作，看能否成功进入第二个设备。",
+          "transcript_file": "minutes/obcn27xt34ox9s245x877j56/transcript.txt"
+        },
+        "minute_token": "obcn27xt34ox9s245x877j56",
+        "title": "威海OPC共创"
+      }
+    ]
+  },
+  "meta": {
+    "count": 1
+  }
+}

@@ -1,0 +1,57 @@
+│
+◇  Config warnings ──────────────────────────────────────────────────────╮
+│                                                                        │
+│  - plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel    │
+│    plugin manifest declares openclaw-weixin without channelConfigs     │
+│    metadata; add openclaw.plugin.json#channelConfigs so config schema  │
+│    and setup surfaces work before runtime loads                        │
+│  - plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel    │
+│    plugin manifest declares openclaw-weixin without channelConfigs     │
+│    metadata; add openclaw.plugin.json#channelConfigs so config schema  │
+│    and setup surfaces work before runtime loads                        │
+│                                                                        │
+├────────────────────────────────────────────────────────────────────────╯
+Updating OpenClaw...
+
+
+Update Result: OK
+  Root: /Users/wangguanhang/.npm-global/lib/node_modules/openclaw
+  Before: 2026.4.26
+  After: 2026.5.2
+
+Steps:
+  ✓ global update (96.22s)
+  ✓ global install swap (2.19s)
+  ✓ openclaw doctor (19.16s)
+
+Total time: 117.99s
+│
+◇  Config warnings ────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  - plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel          │
+│    plugin manifest declares openclaw-weixin without channelConfigs           │
+│    metadata; add openclaw.plugin.json#channelConfigs so config schema        │
+│    and setup surfaces work before runtime loads                              │
+│  - plugins.entries.openclaw-weixin: plugin openclaw-weixin: duplicate        │
+│    plugin id detected; global plugin will be overridden by global            │
+│    plugin                                                                    │
+│    (/Users/wangguanhang/.openclaw/npm/node_modules/@tencent-weixin/openclaw  │
+│  -weixin/index.ts)                                                           │
+│  - plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel          │
+│    plugin manifest declares openclaw-weixin without channelConfigs           │
+│    metadata; add openclaw.plugin.json#channelConfigs so config schema        │
+│    and setup surfaces work before runtime loads                              │
+│                                                                              │
+├──────────────────────────────────────────────────────────────────────────────╯
+
+Updating plugins...
+npm plugins: 0 updated, 1 unchanged.
+
+Restarting service...
+Gateway did not become healthy after restart.
+Gateway version mismatch: expected 2026.5.2, running gateway reported unavailable.
+Service runtime: status=running, state=running, pid=29521
+Gateway port 18789 status: free.
+Restart log: /Users/wangguanhang/.openclaw/logs/gateway-restart.log
+Run `openclaw gateway status --deep` for details.
+

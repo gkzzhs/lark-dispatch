@@ -1,0 +1,31 @@
+Config warnings:
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+{
+  "id": "9bf1d166-cc73-4255-a826-d176770d16c1",
+  "name": "lark-dispatch 会后会议扫描",
+  "enabled": true,
+  "createdAtMs": 1777551481872,
+  "updatedAtMs": 1777551481872,
+  "schedule": {
+    "kind": "every",
+    "everyMs": 1800000,
+    "anchorMs": 1777551481872
+  },
+  "sessionTarget": "isolated",
+  "wakeMode": "now",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "检查今天已结束且有妙记的会议，若发现未分发会议，运行 lark-dispatch 工作流：提取待办、决策、知识点，生成确认草稿，不要在用户确认前创建任务或发消息。",
+    "model": "zai/glm-5-turbo",
+    "thinking": "medium",
+    "lightContext": true
+  },
+  "delivery": {
+    "mode": "none",
+    "channel": "last"
+  },
+  "state": {
+    "nextRunAtMs": 1777553281872
+  }
+}

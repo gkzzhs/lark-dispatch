@@ -1,0 +1,12 @@
+Config warnings:
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+openclaw-weixin: configured
+Agents: main (default)
+Heartbeat interval: 30m (main)
+Session store (main): /Users/wangguanhang/.openclaw/agents/main/sessions/sessions.json (11 entries)
+- agent:main:main (3m ago)
+- agent:main:cron:df910345-3f3c-42e6-a754-f3cca3eb538a (6m ago)
+- agent:main:cron:df910345-3f3c-42e6-a754-f3cca3eb538a:run:e98d789d-9681-4150-9dac-bf4c213d41d7 (6m ago)
+- agent:main:cron:9bf1d166-cc73-4255-a826-d176770d16c1 (13m ago)
+- agent:main:cron:9bf1d166-cc73-4255-a826-d176770d16c1:run:349e4d4b-111c-4c06-a25d-ab1010932e4d (13m ago)

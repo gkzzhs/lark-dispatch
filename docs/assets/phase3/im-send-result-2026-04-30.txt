@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "identity": "bot",
+  "data": {
+    "chat_id": "oc_1942d821be9157fea4eee1780e85e5b8",
+    "create_time": "2026-04-30 20:44:14",
+    "message_id": "om_x100b5000a72ab0a0b4beea94fc4a0ff"
+  }
+}

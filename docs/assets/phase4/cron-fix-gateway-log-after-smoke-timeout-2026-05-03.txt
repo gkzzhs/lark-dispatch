@@ -1,0 +1,160 @@
+2026-04-30T20:30:01.299+08:00 [gateway] starting...
+2026-04-30T20:30:10.212+08:00 [gateway] [plugins] channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads (plugin=openclaw-weixin, source=/Users/wangguanhang/.openclaw/extensions/openclaw-weixin/openclaw.plugin.json)
+2026-04-30T20:30:10.218+08:00 [gateway] starting HTTP server...
+2026-04-30T20:30:10.221+08:00 [canvas] host mounted at http://127.0.0.1:18789/__openclaw__/canvas/ (root /Users/wangguanhang/.openclaw/canvas)
+2026-04-30T20:30:10.268+08:00 [health-monitor] started (interval: 300s, startup-grace: 60s, channel-connect-grace: 120s)
+2026-04-30T20:30:10.340+08:00 [gateway] agent model: deepseek/deepseek-chat
+2026-04-30T20:30:10.341+08:00 [gateway] http server listening (1 plugin: openclaw-weixin; 9.0s)
+2026-04-30T20:30:10.342+08:00 [gateway] log file: /tmp/openclaw/openclaw-2026-04-30.log
+2026-04-30T20:30:10.351+08:00 [gateway] starting channels and sidecars...
+2026-04-30T20:31:40.512+08:00 [openclaw-weixin] [81705dfa9e53-im-bot] starting weixin provider (https://ilinkai.weixin.qq.com)
+2026-04-30T20:31:40.513+08:00 [openclaw-weixin] [81705dfa9e53-im-bot] weixin logs: /tmp/openclaw/openclaw-2026-04-30.log
+2026-04-30T20:31:40.515+08:00 [openclaw-weixin] weixin monitor started (https://ilinkai.weixin.qq.com, account=81705dfa9e53-im-bot)
+2026-04-30T20:31:40.515+08:00 [openclaw-weixin] [weixin] resuming from previous sync buf (104 bytes)
+2026-04-30T20:31:43.319+08:00 [gateway] ready
+2026-04-30T20:31:43.323+08:00 [heartbeat] started
+2026-04-30T20:31:43.388+08:00 [delivery-recovery] Found 3 pending delivery entries — starting recovery
+2026-04-30T20:31:43.523+08:00 [delivery-recovery] Recovered delivery a9af1adf-4026-4660-91fc-db9c8ab55fbc on openclaw-weixin
+2026-04-30T20:31:43.534+08:00 [delivery-recovery] Delivery recovery complete: 1 recovered, 2 failed, 0 skipped (max retries), 0 deferred (backoff)
+2026-04-30T20:32:15.698+08:00 [ws] ⇄ res ✓ health 345ms cached=true conn=6de97b93…1b69 id=67822266…63da
+2026-04-30T20:33:46.810+08:00 [gateway] cron: job created
+2026-04-30T20:34:30.703+08:00 [plugins] acpx staging bundled runtime deps (1 missing, 17 install specs): acpx@0.6.1
+2026-04-30T20:34:48.886+08:00 [plugins] acpx installed bundled runtime deps in 18180ms: acpx@0.6.1
+2026-04-30T20:34:52.881+08:00 [plugins] bonjour staging bundled runtime deps (1 missing, 19 install specs): @homebridge/ciao@^1.3.6
+2026-04-30T20:35:00.266+08:00 [plugins] bonjour installed bundled runtime deps in 7384ms: @homebridge/ciao@^1.3.6
+2026-04-30T20:35:00.620+08:00 [plugins] browser staging bundled runtime deps (4 missing, 23 install specs): @modelcontextprotocol/sdk@1.29.0, express@5.2.1, playwright-core@1.59.1, undici@8.1.0
+2026-04-30T20:35:41.234+08:00 [plugins] browser installed bundled runtime deps in 40614ms: @modelcontextprotocol/sdk@1.29.0, express@5.2.1, playwright-core@1.59.1, undici@8.1.0
+2026-04-30T20:35:45.013+08:00 [plugins] document-extract staging bundled runtime deps (1 missing, 25 install specs): pdfjs-dist@^5.6.205
+2026-04-30T20:36:31.311+08:00 [plugins] document-extract installed bundled runtime deps in 46291ms: pdfjs-dist@^5.6.205
+│
+◇  Config warnings ──────────────────────────────────────────────────────╮
+│                                                                        │
+│  - plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel    │
+│    plugin manifest declares openclaw-weixin without channelConfigs     │
+│    metadata; add openclaw.plugin.json#channelConfigs so config schema  │
+│    and setup surfaces work before runtime loads                        │
+│  - plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel    │
+│    plugin manifest declares openclaw-weixin without channelConfigs     │
+│    metadata; add openclaw.plugin.json#channelConfigs so config schema  │
+│    and setup surfaces work before runtime loads                        │
+│                                                                        │
+├────────────────────────────────────────────────────────────────────────╯
+2026-04-30T20:36:38.488+08:00 [gateway] loading configuration…
+2026-04-30T20:36:38.571+08:00 [gateway] resolving authentication…
+2026-04-30T20:36:38.572+08:00 [gateway] starting...
+2026-04-30T20:36:41.611+08:00 [gateway] [plugins] channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads (plugin=openclaw-weixin, source=/Users/wangguanhang/.openclaw/extensions/openclaw-weixin/openclaw.plugin.json)
+2026-04-30T20:36:41.618+08:00 [gateway] starting HTTP server...
+2026-04-30T20:36:41.620+08:00 [canvas] host mounted at http://127.0.0.1:18789/__openclaw__/canvas/ (root /Users/wangguanhang/.openclaw/canvas)
+2026-04-30T20:36:41.666+08:00 [health-monitor] started (interval: 300s, startup-grace: 60s, channel-connect-grace: 120s)
+2026-04-30T20:36:41.729+08:00 [gateway] agent model: deepseek/deepseek-chat
+2026-04-30T20:36:41.730+08:00 [gateway] http server listening (1 plugin: openclaw-weixin; 3.2s)
+2026-04-30T20:36:41.730+08:00 [gateway] log file: /tmp/openclaw/openclaw-2026-04-30.log
+2026-04-30T20:36:41.736+08:00 [gateway] starting channels and sidecars...
+2026-04-30T20:37:14.870+08:00 [openclaw-weixin] [81705dfa9e53-im-bot] starting weixin provider (https://ilinkai.weixin.qq.com)
+2026-04-30T20:37:14.871+08:00 [openclaw-weixin] [81705dfa9e53-im-bot] weixin logs: /tmp/openclaw/openclaw-2026-04-30.log
+2026-04-30T20:37:14.873+08:00 [openclaw-weixin] weixin monitor started (https://ilinkai.weixin.qq.com, account=81705dfa9e53-im-bot)
+2026-04-30T20:37:14.874+08:00 [openclaw-weixin] [weixin] resuming from previous sync buf (104 bytes)
+2026-04-30T20:37:14.889+08:00 [gateway] ready
+2026-04-30T20:37:14.893+08:00 [heartbeat] started
+2026-04-30T20:37:14.918+08:00 [delivery-recovery] Found 2 pending delivery entries — starting recovery
+2026-04-30T20:37:14.923+08:00 [delivery-recovery] Delivery df9738ae-19d7-4aac-b1e5-633d1ae083ba not ready for retry yet — backoff 268605ms remaining
+2026-04-30T20:37:15.202+08:00 [gateway] cron: job updated
+2026-04-30T20:37:15.203+08:00 [ws] ⇄ res ✓ cron.update 221ms conn=8801bba7…7430 id=a0d382cc…035c
+2026-04-30T20:37:15.327+08:00 [delivery-recovery] Recovered delivery edf09a58-67fb-44c3-b945-73caede8b351 on openclaw-weixin
+2026-04-30T20:37:15.327+08:00 [delivery-recovery] Delivery recovery complete: 1 recovered, 0 failed, 0 skipped (max retries), 1 deferred (backoff)
+2026-05-01T20:36:44.262+08:00 [gateway] update available (latest): v2026.4.29 (current v2026.4.26). Run: openclaw update
+2026-05-03T10:01:58.812+08:00 [ws] ⇄ res ✓ doctor.memory.status 1054ms conn=a397b598…8a3a id=7e8c6aea…e71e
+2026-05-03T10:02:20.812+08:00 [gateway] signal SIGTERM received
+2026-05-03T10:02:20.820+08:00 [gateway] received SIGTERM; shutting down
+2026-05-03T10:02:21.049+08:00 [gmail-watcher] gmail watcher stopped
+│
+◇  Config warnings ──────────────────────────────────────────────────────╮
+│                                                                        │
+│  - plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel    │
+│    plugin manifest declares openclaw-weixin without channelConfigs     │
+│    metadata; add openclaw.plugin.json#channelConfigs so config schema  │
+│    and setup surfaces work before runtime loads                        │
+│  - plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel    │
+│    plugin manifest declares openclaw-weixin without channelConfigs     │
+│    metadata; add openclaw.plugin.json#channelConfigs so config schema  │
+│    and setup surfaces work before runtime loads                        │
+│                                                                        │
+├────────────────────────────────────────────────────────────────────────╯
+2026-05-03T10:02:23.052+08:00 [gateway] loading configuration…
+2026-05-03T10:02:23.174+08:00 [gateway] resolving authentication…
+2026-05-03T10:02:23.176+08:00 [gateway] starting...
+2026-05-03T10:02:25.245+08:00 [gateway] [plugins] staging bundled runtime deps before gateway startup (1 missing, 11 install specs): chokidar@^5.0.0
+2026-05-03T10:03:00.241+08:00 [gateway] [plugins] installed bundled runtime deps before gateway startup in 34995ms: chokidar@^5.0.0
+2026-05-03T10:03:11.578+08:00 [gateway] [plugins] channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads (plugin=openclaw-weixin, source=/Users/wangguanhang/.openclaw/extensions/openclaw-weixin/openclaw.plugin.json)
+2026-05-03T10:03:11.584+08:00 [gateway] starting HTTP server...
+2026-05-03T10:03:11.587+08:00 [gateway] signal SIGTERM received
+2026-05-03T10:03:11.588+08:00 [gateway] received SIGTERM; shutting down
+2026-05-03T10:03:11.590+08:00 [canvas] host mounted at http://127.0.0.1:18789/__openclaw__/canvas/ (root /Users/wangguanhang/.openclaw/canvas)
+│
+◇  Config warnings ──────────────────────────────────────────────────────╮
+│                                                                        │
+│  - plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel    │
+│    plugin manifest declares openclaw-weixin without channelConfigs     │
+│    metadata; add openclaw.plugin.json#channelConfigs so config schema  │
+│    and setup surfaces work before runtime loads                        │
+│  - plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel    │
+│    plugin manifest declares openclaw-weixin without channelConfigs     │
+│    metadata; add openclaw.plugin.json#channelConfigs so config schema  │
+│    and setup surfaces work before runtime loads                        │
+│                                                                        │
+├────────────────────────────────────────────────────────────────────────╯
+2026-05-03T10:03:13.269+08:00 [gateway] loading configuration…
+2026-05-03T10:03:13.375+08:00 [gateway] resolving authentication…
+2026-05-03T10:03:13.376+08:00 [gateway] starting...
+2026-05-03T10:03:20.299+08:00 [gateway] [plugins] channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads (plugin=openclaw-weixin, source=/Users/wangguanhang/.openclaw/extensions/openclaw-weixin/openclaw.plugin.json)
+2026-05-03T10:03:20.306+08:00 [gateway] starting HTTP server...
+2026-05-03T10:03:20.308+08:00 [canvas] host mounted at http://127.0.0.1:18789/__openclaw__/canvas/ (root /Users/wangguanhang/.openclaw/canvas)
+2026-05-03T10:03:20.447+08:00 [health-monitor] started (interval: 300s, startup-grace: 60s, channel-connect-grace: 120s)
+2026-05-03T10:03:20.514+08:00 [gateway] agent model: deepseek/deepseek-chat
+2026-05-03T10:03:20.515+08:00 [gateway] http server listening (8 plugins: acpx, bonjour, browser, device-pair, memory-core, openclaw-weixin, phone-control, talk-voice; 7.1s)
+2026-05-03T10:03:20.515+08:00 [gateway] log file: /tmp/openclaw/openclaw-2026-05-03.log
+2026-05-03T10:03:20.525+08:00 [gateway] starting channels and sidecars...
+│
+◇  Config warnings ──────────────────────────────────────────────────────╮
+│                                                                        │
+│  - plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel    │
+│    plugin manifest declares openclaw-weixin without channelConfigs     │
+│    metadata; add openclaw.plugin.json#channelConfigs so config schema  │
+│    and setup surfaces work before runtime loads                        │
+│  - plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel    │
+│    plugin manifest declares openclaw-weixin without channelConfigs     │
+│    metadata; add openclaw.plugin.json#channelConfigs so config schema  │
+│    and setup surfaces work before runtime loads                        │
+│                                                                        │
+├────────────────────────────────────────────────────────────────────────╯
+2026-05-03T10:04:28.056+08:00 [gateway] loading configuration…
+2026-05-03T10:04:28.149+08:00 [gateway] resolving authentication…
+2026-05-03T10:04:28.150+08:00 [gateway] starting...
+2026-05-03T10:04:35.893+08:00 [gateway] [plugins] channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads (plugin=openclaw-weixin, source=/Users/wangguanhang/.openclaw/extensions/openclaw-weixin/openclaw.plugin.json)
+2026-05-03T10:04:35.900+08:00 [gateway] starting HTTP server...
+2026-05-03T10:04:35.903+08:00 [canvas] host mounted at http://127.0.0.1:18789/__openclaw__/canvas/ (root /Users/wangguanhang/.openclaw/canvas)
+2026-05-03T10:04:36.045+08:00 [health-monitor] started (interval: 300s, startup-grace: 60s, channel-connect-grace: 120s)
+2026-05-03T10:04:36.110+08:00 [gateway] agent model: deepseek/deepseek-chat
+2026-05-03T10:04:36.110+08:00 [gateway] http server listening (8 plugins: acpx, bonjour, browser, device-pair, memory-core, openclaw-weixin, phone-control, talk-voice; 8.0s)
+2026-05-03T10:04:36.111+08:00 [gateway] log file: /tmp/openclaw/openclaw-2026-05-03.log
+2026-05-03T10:04:36.122+08:00 [gateway] starting channels and sidecars...
+2026-05-03T10:05:08.863+08:00 [openclaw-weixin] [81705dfa9e53-im-bot] starting weixin provider (https://ilinkai.weixin.qq.com)
+2026-05-03T10:05:08.865+08:00 [openclaw-weixin] [81705dfa9e53-im-bot] weixin logs: /tmp/openclaw/openclaw-2026-05-03.log
+2026-05-03T10:05:08.867+08:00 [openclaw-weixin] weixin monitor started (https://ilinkai.weixin.qq.com, account=81705dfa9e53-im-bot)
+2026-05-03T10:05:08.868+08:00 [openclaw-weixin] [weixin] resuming from previous sync buf (104 bytes)
+2026-05-03T10:05:08.877+08:00 [plugins] bonjour: advertised gateway fqdn=普通家庭的MacBook Pro (OpenClaw)._openclaw-gw._tcp.local. host=MacBookPro.local. port=18789 state=announcing
+2026-05-03T10:05:08.899+08:00 [plugins] embedded acpx runtime backend registered (cwd: /Users/wangguanhang/.openclaw/workspace)
+2026-05-03T10:05:09.250+08:00 [browser/server] Browser control listening on http://127.0.0.1:18791/ (auth=token)
+2026-05-03T10:05:09.267+08:00 [gateway] ready
+2026-05-03T10:05:09.271+08:00 [heartbeat] started
+2026-05-03T10:05:09.284+08:00 [delivery-recovery] Found 1 pending delivery entries — starting recovery
+2026-05-03T10:05:09.386+08:00 [delivery-recovery] Recovered delivery df9738ae-19d7-4aac-b1e5-633d1ae083ba on openclaw-weixin
+2026-05-03T10:05:09.386+08:00 [delivery-recovery] Delivery recovery complete: 1 recovered, 0 failed, 0 skipped (max retries), 0 deferred (backoff)
+2026-05-03T10:05:13.005+08:00 [plugins] bonjour: advertised gateway fqdn=普通家庭的MacBook Pro (OpenClaw)._openclaw-gw._tcp.local. host=MacBookPro.local. port=18789 state=announcing
+2026-05-03T10:05:13.931+08:00 [ws] ⇄ res ✓ health 198ms cached=true conn=5ffc58d1…abd5 id=cdd597b2…ee20
+2026-05-03T10:06:08.614+08:00 [gateway] cron: job created
+2026-05-03T10:06:31.423+08:00 [sessions/store] pruned stale session entries
+2026-05-03T10:06:42.468+08:00 [plugins] microsoft staging bundled runtime deps (1 missing, 30 install specs): node-edge-tts@^1.2.10
+2026-05-03T10:06:47.851+08:00 [plugins] microsoft installed bundled runtime deps in 5383ms: node-edge-tts@^1.2.10
+2026-05-03T10:07:06.482+08:00 [plugins] web-readability staging bundled runtime deps (2 missing, 35 install specs): @mozilla/readability@^0.6.0, linkedom@^0.18.12
+2026-05-03T10:07:13.837+08:00 [plugins] web-readability installed bundled runtime deps in 7356ms: @mozilla/readability@^0.6.0, linkedom@^0.18.12

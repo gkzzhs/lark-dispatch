@@ -1,0 +1,43 @@
+Config warnings:
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: duplicate plugin id detected; global plugin will be overridden by global plugin (/Users/wangguanhang/.openclaw/npm/node_modules/@tencent-weixin/openclaw-weixin/index.ts)
+- plugins.entries.openclaw-weixin: plugin openclaw-weixin: channel plugin manifest declares openclaw-weixin without channelConfigs metadata; add openclaw.plugin.json#channelConfigs so config schema and setup surfaces work before runtime loads
+{
+  "entries": [
+    {
+      "ts": 1777774699131,
+      "jobId": "f512fe69-7081-4310-851e-21c3e0b58fac",
+      "action": "finished",
+      "status": "ok",
+      "summary": "**Smoke test report:**\n\n| Item | Status |\n|---|---|\n| **Current working directory** | `/Users/wangguanhang/.openclaw/workspace` (agent's workspace) |\n| **Target directory** | `/Users/wangguanhang/Documents/飞书校园AI挑战赛/lark-dispatch` |\n| **README.md** | ✅ Readable (10,674 bytes, modified 2026-05-03 09:50) |\n| **First heading** | **📨 lark-dispatch** (h1: \"基于飞书 CLI 的会后知识智能分发 Agent\") |\n\nREADME describes a zero-code skill-based agent that extracts decisions, action items, and knowledge points from meeting minutes, identifies relevant contacts, and dispatches tasks, docs, and notifications via Feishu after user confirmation (version 1.1.0, third validation cycle complete with real Feishu Mirai integration).\n\nNo files were modified.",
+      "runAtMs": 1777774663115,
+      "durationMs": 36014,
+      "nextRunAtMs": 1777796250328,
+      "model": "deepseek-chat",
+      "provider": "deepseek",
+      "usage": {
+        "input_tokens": 2521,
+        "output_tokens": 304,
+        "total_tokens": 2546
+      },
+      "delivered": false,
+      "deliveryStatus": "not-requested",
+      "delivery": {
+        "intended": {
+          "channel": "last",
+          "to": null,
+          "source": "last"
+        },
+        "fallbackUsed": false,
+        "delivered": false
+      },
+      "sessionId": "48f3a4e8-822d-48bd-875c-afd8384edb85",
+      "sessionKey": "agent:main:cron:f512fe69-7081-4310-851e-21c3e0b58fac:run:48f3a4e8-822d-48bd-875c-afd8384edb85"
+    }
+  ],
+  "total": 1,
+  "offset": 0,
+  "limit": 50,
+  "hasMore": false,
+  "nextOffset": null
+}
