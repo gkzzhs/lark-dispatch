@@ -1,0 +1,35 @@
+Final local checks on 2026-05-10 CST
+
+bash scripts/check-docs.sh
+Summary: 56 ok, 0 failures
+
+bash scripts/check-docs-api.sh
+Summary: 4 ok, 0 failures
+
+bash scripts/smoke-test.sh
+Summary: 23 ok, 1 warnings, 0 failures
+Warnings:
+- openclaw has disabled historical cron records; this is safe but should be documented
+
+bot IM supplemental test
+message_id: om_x100b50c888c774a4c3700aafb8fcaae
+chat_id: oc_1942d821be9157fea4eee1780e85e5b8
+create_time: 2026-05-10 08:08:00
+
+docs v2 supplemental test
+document_id: QcCqdXBKSo94SOxctG8cbevGnZf
+url: https://mxevfgxd6ba.feishu.cn/docx/QcCqdXBKSo94SOxctG8cbevGnZf
+create_revision_id: 3
+update_revision_id: 5
+
+third-party/group bot IM test
+target_chat_id: oc_ca2752dd467518a5b5c5bddf77676ef9
+result: blocked
+error_code: 230002
+message: Bot/User can NOT be out of the chat.
+
+git diff --check
+passed with no output
+
+docs/assets/live-runs.jsonl
+JSONL parse check passed

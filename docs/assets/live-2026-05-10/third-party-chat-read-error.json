@@ -1,0 +1,11 @@
+{
+  "target_chat_id": "oc_ca2752dd467518a5b5c5bddf77676ef9",
+  "ok": false,
+  "identity": "bot",
+  "error": {
+    "type": "api_error",
+    "code": 230002,
+    "message": "HTTP 400: Bot/User can NOT be out of the chat.",
+    "detail": null
+  }
+}

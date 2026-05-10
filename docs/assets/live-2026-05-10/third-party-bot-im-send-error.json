@@ -1,0 +1,11 @@
+{
+  "target_chat_id": "oc_ca2752dd467518a5b5c5bddf77676ef9",
+  "ok": false,
+  "identity": "bot",
+  "error": {
+    "type": "api_error",
+    "code": 99992402,
+    "message": "HTTP 400: field validation failed",
+    "detail": null
+  }
+}

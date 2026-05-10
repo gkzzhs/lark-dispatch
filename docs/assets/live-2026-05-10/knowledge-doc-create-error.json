@@ -1,0 +1,8 @@
+{
+  "ok": false,
+  "identity": "user",
+  "error": {
+    "type": "mcp_error",
+    "message": "MCP: create document failed: [API:3000] CreateDocument failed: folder locked\n💡 Suggestion: Please check your input parameters and try again after modification\n📍 Context: api=CreateDocument, errorCode=1770036\n🔗 Caused by: folder locked"
+  }
+}

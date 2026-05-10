@@ -10,7 +10,7 @@ metadata:
 
 # 会后知识智能分发工作流
 
-**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](../lark-shared/SKILL.md)，其中包含认证、权限处理、安全规则。如果文件不存在，提示用户先安装官方 Skills：`npx skills add https://github.com/larksuite/cli -y -g`**
+**CRITICAL — 开始前 MUST 先用 Read 工具读取 [`../lark-shared/SKILL.md`](../lark-shared/SKILL.md)，其中包含认证、权限处理、安全规则。如果相对路径不存在，先检查全局 Skills 目录是否已安装 `lark-shared`；如果仍不存在，提示用户先安装官方 Skills：`npx skills add https://github.com/larksuite/cli -y -g`**
 
 ## 适用场景
 
@@ -36,7 +36,7 @@ lark-cli auth login --scope "search:user"
 # 完整授权（+ 消息推送 + 知识库 + 会议录制搜索）
 lark-cli auth login --scope "vc:record:readonly docs:document.content:read"
 lark-cli auth login --domain wiki
-# Bot 消息推送需在开发者后台开通 im:message:send_as_bot
+# Bot 消息推送需在开发者后台开通 bot 消息能力；CLI scope 检查通常显示为 im:message.send_as_bot
 ```
 
 > 多次 login 的 scope 会累积（增量授权）。
@@ -122,9 +122,19 @@ lark-cli vc +notes --minute-tokens <minute_token>
 - `note_doc_token`：纪要文档 token（可进一步 fetch 全文）
 - `verbatim_doc_token`：逐字稿 token
 
-> **数据优先级**：`summary` + `chapters` + `todos` 通常已足够进行分析。仅当用户要求更详细分析时，才通过 `docs +fetch --token <note_doc_token>` 读取纪要全文。
+> **数据优先级**：`summary` + `chapters` + `todos` 通常已足够进行分析。如果 `vc +notes` 只返回较短 `summary`，或缺少 `chapters/todos`，必须使用逐字稿 fallback：读取 `artifacts.transcript_file` 或 `--output-dir` 下的 `transcript.txt`，并在 Step 4 标注“基于逐字稿提取，需人工确认”。仅当用户要求更详细分析且存在 `note_doc_token` 时，才通过 `docs +fetch` 读取纪要全文。
 
-### 1c: 补强会议录制内容（可选）
+### 1c: 逐字稿 fallback（AI 产物不足时必须执行）
+
+当在线 AI 产物不足以判断待办/决策/知识点时：
+
+```bash
+lark-cli vc +notes --minute-tokens <minute_token> --output-dir ./minutes/<minute_token>
+```
+
+然后读取输出目录中的 `transcript.txt`。提取时使用逐字稿时间戳作为来源，例如 `00:19:42-00:25:31`，不要把“逐字稿中的建议”包装成已确认决策。
+
+### 1d: 补强会议录制内容（可选）
 
 如果 `vc +notes` 返回的信息不够完整：
 
@@ -167,27 +177,27 @@ AI 必须将提取结果组织为以下结构（用于 Step 4 展示给用户）
 ```
 ## 📋 待办事项（Action Items）
 
-| # | 任务描述 | 责任人 | 截止时间 | 来源章节 |
+| # | 任务描述 | 责任人 | 截止时间 | 来源章节/时间段 |
 |---|---------|--------|---------|---------|
-| 1 | xxx     | 张三   | 4/20    | 章节标题 |
+| 1 | xxx     | 张三   | 4/20    | 章节标题或 00:19:42-00:25:31 |
 
 ## 📢 关键决策（Decisions）
 
-| # | 决策内容 | 相关人 | 来源章节 |
+| # | 决策内容 | 相关人 | 来源章节/时间段 |
 |---|---------|--------|---------|
-| 1 | xxx     | 李四、王五 | 章节标题 |
+| 1 | xxx     | 李四、王五 | 章节标题或 00:19:42-00:25:31 |
 
 ## 📚 知识要点（Knowledge）
 
-| # | 知识内容 | 分类标签 | 来源章节 |
+| # | 知识内容 | 分类标签 | 来源章节/时间段 |
 |---|---------|---------|---------|
-| 1 | xxx     | 工具推荐 | 章节标题 |
+| 1 | xxx     | 工具推荐 | 章节标题或 00:19:42-00:25:31 |
 ```
 
 ### 分析注意事项
 
 1. **不要编造**：如果纪要中没有明确的待办/决策/知识，对应类别留空并标注"（未识别到）"
-2. **引用来源**：每条提取结果标注来自哪个章节，便于用户核验
+2. **引用来源**：每条提取结果标注来自哪个章节或逐字稿时间段，便于用户核验
 3. **去重**：飞书 AI 已识别的 todos 与 AI 新提取的待办做去重
 4. **相关人优先从纪要中提取**：优先使用纪要中出现的真实姓名，不要猜测
 
@@ -218,32 +228,54 @@ lark-cli contact +search-user --query "张三"
 
 **这是整个工作流最关键的一步。绝不跳过。**
 
-将 Step 2 的提取结果 + Step 3 的人员解析结果，完整展示给用户：
+将 Step 2 的提取结果 + Step 3 的人员解析结果，按固定确认草稿完整展示给用户：
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📝 会议：{会议标题}
 📅 时间：{会议时间}
+🔎 数据来源：{AI 总结 / 章节 / 逐字稿 fallback}
+⚠️ 确认状态：未确认，以下动作尚未执行
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ## 📋 待办事项（将创建飞书任务）
 
-| # | 任务描述 | 责任人 | open_id 状态 | 截止时间 |
-|---|---------|--------|-------------|---------|
-| 1 | xxx     | 张三   | ✅ 已解析    | 4/20    |
-| 2 | xxx     | 待指定  | ⚠️ 需手动指定 | -      |
+| # | 任务描述 | 责任人 | open_id 状态 | 截止时间 | 来源 |
+|---|---------|--------|-------------|---------|------|
+| 1 | xxx     | 张三   | 已解析       | 4/20    | 章节/时间段 |
+| 2 | xxx     | 待指定 | 需手动指定   | -       | 章节/时间段 |
 
 ## 📢 关键决策（将推送飞书消息）
 
-| # | 决策内容 | 推送给 | open_id 状态 |
-|---|---------|--------|-------------|
-| 1 | xxx     | 李四   | ✅ 已解析    |
+| # | 决策内容 | 推送给 | open_id 状态 | 来源 |
+|---|---------|--------|-------------|------|
+| 1 | xxx     | 李四   | 已解析       | 章节/时间段 |
 
 ## 📚 知识要点（将沉淀到知识库）
 
-| # | 知识内容 | 分类标签 |
-|---|---------|---------|
-| 1 | xxx     | 工具推荐 |
+| # | 知识内容 | 分类标签 | 来源 |
+|---|---------|---------|------|
+| 1 | xxx     | 工具推荐 | 章节/时间段 |
+
+## 👥 人员解析
+
+| 姓名 | 状态 | 处理 |
+|---|---|---|
+| 张三 | 已解析 | 可用于任务/消息 |
+| 李四 | 多个候选 | 需用户指定 |
+| 王五 | 未找到 | 跳过分配或由用户补充 open_id |
+
+## 🚦确认后将执行
+
+- 为已确认且责任人可分配的待办创建飞书任务
+- 向已确认且可触达的相关人推送决策消息
+- 创建知识沉淀文档和分发报告
+
+## 🚫确认前不会执行
+
+- 不创建任务
+- 不发送消息
+- 不写入知识库或分发报告
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 请确认以上内容，或告诉我需要修改的地方：
@@ -258,10 +290,59 @@ lark-cli contact +search-user --query "张三"
 - 用户说"确认" / "OK" / "没问题" / "开始分发" → 进入 Step 5
 - 用户提出修改 → 更新提取结果，重新展示
 - 用户说"取消" → 终止工作流
+- 用户只确认部分条目 → 仅执行用户明确确认的条目，未确认条目写入报告为"待确认/跳过"
+
+---
+
+## Step 4.5: 重复分发检查
+
+用户确认后、执行 Step 5 前，必须先检查本地 registry，再搜索飞书文档。飞书搜索可能存在索引延迟，刚创建的报告不一定立刻能搜到，因此本地 registry 是首要判断依据。
+
+```bash
+# 在仓库中先查本地实测/分发记录
+rg "\"minute_token\":\"{minute_token}\"|\"meeting_title\":\"{会议标题}\"" docs/assets/live-runs.jsonl
+```
+
+然后搜索是否已有同一会议的分发报告：
+
+```bash
+# 先按标题搜索
+lark-cli docs +search --as user --query "分发报告 | {会议标题}" --page-size 10
+
+# 如果有 minute_token，也按 token 再查一次
+lark-cli docs +search --as user --query "{minute_token}" --page-size 10
+```
+
+**处理规则：**
+- registry 和飞书搜索均未命中历史报告 → 正常进入 Step 5
+- 任一来源命中同一会议标题或同一 `minute_token` → 暂停执行，提示"这场会议可能已在 {历史报告标题/时间} 分发过，是否继续？"
+- 用户确认继续 → 允许补发漏项，但分发报告必须标注"重复分发/补发"
+- 用户不确认 → 终止执行，不创建任务、不发消息、不写入新报告
+- 搜索失败但 registry 未命中 → 不阻塞流程，但必须在最终报告中记录"飞书搜索重复检查失败：{错误摘要}"
+- 每次真实执行成功后，必须向 `docs/assets/live-runs.jsonl` 追加一行 JSONL 记录，包含 `run_id`、`run_date`、`meeting_title`、`minute_token`、`task_url`、`knowledge_doc_url`、`dispatch_report_url`、`status`
+
+---
+
+## 真实实测安全规则
+
+当用户要求“真实实测”“跑一遍真实闭环”“实测一遍”时，按两段式确认执行：
+
+1. **进入真实实测确认**：用户明确允许读取真实妙记、生成确认草稿、做重复分发检查。
+2. **真实写入确认**：用户看完确认草稿后，明确允许创建任务、发送消息、创建文档或写入知识库。
+
+未收到第二次确认前，禁止执行 Step 5 和 Step 6 的真实写入命令。真实实测优先采用最小闭环：1 场会议、1 条待办、1 份知识文档、1 份分发报告；IM 推送仅在 bot 权限和接收人条件满足时执行，否则跳过并记录。
 
 ---
 
 ## Step 5: 执行分发
+
+**执行顺序要求：**
+
+1. 先执行任务创建，记录任务链接。
+2. 再执行知识沉淀，记录文档链接。
+3. 最后生成分发报告，报告中必须包含前两步的真实链接。
+
+不要并行创建知识文档和分发报告。飞书文档目录可能短暂锁定，并行写入容易触发 `folder locked`。
 
 ### 5a: 待办 → 创建飞书任务
 
@@ -304,10 +385,23 @@ lark-cli docs +update --doc "<node_token>" --markdown "@knowledge.md" --mode ove
 lark-cli docs +create --title "会议知识 | {会议标题} | {日期}" --markdown "@knowledge.md"
 
 # 路径 C：归档到指定文件夹（v1.0.13 新增）
-lark-cli drive +create-folder --name "会议分发归档 | {月份}" --parent "<folder_token>"
+lark-cli drive +create-folder --name "会议分发归档 | {月份}" --folder-token "<folder_token>"
 ```
 
 > **v1.0.13 改进**：知识库节点创建后自动给用户授权，无需手动处理权限。分发报告可归档到指定云空间文件夹。
+
+**文档创建重试规则：**
+- `docs +create` / `docs +update` 必须串行执行
+- 如果返回 `folder locked`、网络超时或临时 5xx，等待 2-3 秒后重试 1 次
+- 重试仍失败则降级为本地保存 Markdown，并在分发报告中记录失败原因
+- 不要因为第一次失败就改为创建多份文档；先搜索/确认是否已经创建成功
+
+**docs API 兼容规则：**
+- 当前默认命令仍使用 v1：`docs +create --title ... --markdown @file`、`docs +update --markdown @file --mode overwrite`
+- 如果使用 `--api-version v2`，参数必须切换为：`docs +create --api-version v2 --content @file --doc-format markdown`
+- v2 更新使用：`docs +update --api-version v2 --doc <doc_url> --content @file --doc-format markdown --command overwrite`
+- 不要混用 v1/v2 参数；例如 v2 不接受 `--title --markdown`，v1 不使用 `--content --command`
+- 迁移到 v2 前，先运行 `bash scripts/check-docs-api.sh` 做 dry-run 兼容检查
 
 **知识文档格式：**
 ```markdown
@@ -344,7 +438,11 @@ cat > dispatch-report.md << 'EOF'
 ## 会议信息
 - **会议**：{会议标题}
 - **时间**：{会议时间}
+- **妙记 token**：{minute_token}
+- **数据来源**：{AI 总结 / 章节 / 逐字稿 fallback}
 - **分发时间**：{当前时间}
+- **确认范围**：{全部确认 / 部分确认 / 补发}
+- **重复检查**：{未发现历史报告 / 发现后用户确认继续 / 检查失败}
 
 ## 分发汇总
 
@@ -393,8 +491,8 @@ lark-cli docs +create --title "分发报告 | {会议标题} | {日期}" --markd
 |------|---------|---------|------|
 | `minutes +search` | `--scope "minutes:minutes.search:read"` | 是 | 搜索会议 |
 | `minutes minutes get` | `--scope "minutes:minutes.basic:read"` | 是 | 获取妙记信息 |
-| `vc +notes` | `--scope "minutes:minutes:readonly minutes:minutes.artifacts:read minutes:minutes.transcript:export"` | 是 | 获取 AI 产物 |
-| `contact +search-user` | `--scope "search:user"` | 推荐 | 姓名 → open_id |
+| `vc +notes` | `--scope "minutes:minutes:readonly minutes:minutes.artifacts:read minutes:minutes.transcript:export"` | 是 | 获取 AI 产物和逐字稿 |
+| `contact +search-user` | `--scope "search:user"` / `contact:user:search` | 推荐 | 姓名 → open_id |
 | `contact +get-user` | 默认 | 否 | 获取当前用户信息 |
 | `task +create` | `--domain task` | 推荐 | 创建待办任务 |
 | `docs +create` | `--domain docs` | 是 | 创建分发报告 |
@@ -417,8 +515,15 @@ lark-cli docs +create --title "分发报告 | {会议标题} | {日期}" --markd
 ### 无纪要 / 纪要内容为空
 
 - `minutes +search` 无结果 → 提示"没有找到匹配的妙记，请确认会议是否开启了录制"
-- `vc +notes` 返回但 `summary` 和 `chapters` 均为空 → 提示"会议纪要内容为空，可能录制时间太短或 AI 未生成总结"
+- `vc +notes` 返回但 `summary` 和 `chapters` 均为空 → 检查是否有 `transcript.txt`；有逐字稿则进入 fallback，无逐字稿再提示"会议纪要内容为空，可能录制时间太短或 AI 未生成总结"
 - 纪要存在但内容极少（如 <100 字）→ 正常处理，但在 Step 4 提示"纪要内容较短，提取结果可能不完整"
+
+### AI 产物不完整但有逐字稿
+
+- 如果 `summary` 很短，且 `chapters/todos` 缺失，不要直接判定无内容
+- 读取逐字稿并以时间段作为来源重新提取
+- Step 4 必须标注"基于逐字稿提取，需人工确认"
+- 逐字稿里的建议、演示、假设不能自动升级为已确认决策
 
 ### 提取结果为空
 
@@ -443,7 +548,8 @@ lark-cli docs +create --title "分发报告 | {会议标题} | {日期}" --markd
 ### 重复分发防护
 
 如果用户对同一场会议多次触发分发：
-- 提醒用户"这场会议已在 {上次分发时间} 分发过，是否继续？"（通过搜索标题匹配已有分发报告）
+- 先用 `docs +search` 搜索 `分发报告 | {会议标题}`，再用 `minute_token` 搜索历史报告
+- 提醒用户"这场会议已在 {上次分发时间} 分发过，是否继续？"
 - 用户确认后正常执行（允许补发漏项）
 - 不自动跳过
 

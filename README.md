@@ -21,7 +21,7 @@
 
 同时，项目已完成 OpenClaw cron 配置与 run history 验证，证明主动触发入口可创建、可运行、可追踪。第四周期已将 OpenClaw 更新到 2026.5.2，并验证 cron isolated session 可读取真实飞书妙记、生成确认草稿；确认后的真实分发仍必须等待用户确认后执行。
 
-证据入口：[第三周期证据登记表](docs/第三周期证据登记表.md) / [主动触发 Demo](docs/主动触发Demo.md) / [效果验证报告](docs/效果验证报告.md)
+证据入口：[最终评审摘要](docs/最终评审摘要.md) / [评审快速入口](docs/评审快速入口.md) / [第三周期证据登记表](docs/第三周期证据登记表.md) / [主动触发 Demo](docs/主动触发Demo.md) / [效果验证报告](docs/效果验证报告.md)
 
 ## 😩 它解决什么问题
 
@@ -104,16 +104,24 @@ Step 6  生成报告
 lark-dispatch/
 ├── README.md                    # 本文件
 ├── LICENSE                      # MIT License
+├── scripts/
+│   ├── check-docs-api.sh         # 飞书 docs v1/v2 dry-run 参数兼容检查
+│   ├── check-docs.sh             # 文档、示例与安全口径一致性检查
+│   └── smoke-test.sh             # 非破坏性环境与能力验收脚本
 ├── skills/
 │   └── lark-dispatch/
 │       └── SKILL.md             # 核心 Skill 定义（可直接安装使用）
 ├── docs/
+│   ├── 评审快速入口.md           # 当前能力、复测命令和边界说明
+│   ├── 最终评审摘要.md           # 最终能力、证据和边界摘要
 │   ├── 场景定义文档.md           # 完整场景分析与产品设计
+│   ├── 真实实测Runbook.md        # 真实飞书最小闭环实测步骤
 │   ├── 效果验证报告.md           # 真实数据验证结果
 │   ├── 主动触发Demo.md           # OpenClaw cron 主动触发说明
 │   ├── 第三周期冲刺计划.md       # 复赛前验证与材料计划
 │   └── 用户反馈采集模板.md       # 真实用户反馈采集表
 └── demo/
+    ├── confirmation-draft.md    # Step 4 确认草稿示例
     ├── dispatch-report.md       # 示例分发报告
     └── knowledge.md             # 示例知识沉淀
 ```
@@ -122,9 +130,10 @@ lark-dispatch/
 
 ### 前置条件
 
-- [飞书 CLI](https://github.com/larksuite/cli) >= 1.0.13，已验证版本：1.0.17 / 1.0.19 / 1.0.20；推荐使用最新稳定版
+- [飞书 CLI](https://github.com/larksuite/cli) >= 1.0.13，已验证版本：1.0.17 / 1.0.19 / 1.0.20 / 1.0.27；推荐使用最新稳定版
 - 已完成 `lark-cli auth login`（user 身份）
-- 所需 Scope：`minutes:minutes.search:read`、`minutes:minutes.basic:read`、`minutes:minutes:readonly`、`minutes:minutes.artifacts:read`、`contact:contact.user:readonly`、`task:task:write`、`wiki:wiki:write`、`im:message:send`
+- 所需 Scope：`minutes:minutes.search:read`、`minutes:minutes.basic:read`、`minutes:minutes:readonly`、`minutes:minutes.artifacts:read`、`minutes:minutes.transcript:export`、`contact:user:search`、`task:task:write`、`wiki:node:create`、`docx:document:create`、`docs:document.content:read`、`im:message.send_as_user`
+- bot 私聊推送还需要飞书开发者后台开通 `im:message:send_as_bot` 并发布；这是应用身份权限，不以 user `lark-cli auth check` 作为唯一判断，实测以 bot dry-run 或真实发送返回为准
 - ⚠️ 本项目依赖飞书官方 CLI Skills，使用前需要先安装官方 Skills：
   ```bash
   npx skills add https://github.com/larksuite/cli -y -g
@@ -133,6 +142,35 @@ lark-dispatch/
 ### 安装
 
 将 `skills/lark-dispatch/` 目录复制到你的 Agent 的 skills 目录下即可。
+
+### 本地检查与非破坏性验收
+
+先运行文档与示例一致性检查，避免旧 scope、旧参数或安全门控说明回潮：
+
+```bash
+cd lark-dispatch
+bash scripts/check-docs.sh
+bash scripts/check-docs-api.sh
+```
+
+再运行环境能力验收。脚本只执行只读请求和 `--dry-run` 写入预览，不会创建飞书任务、文档、知识库节点或消息。
+
+```bash
+bash scripts/smoke-test.sh
+```
+
+如果默认样例妙记 token 不在你的权限范围内，可改用自己可访问的 token：
+
+```bash
+LARK_DISPATCH_SMOKE_MINUTE_TOKEN="<minute_token>" bash scripts/smoke-test.sh
+```
+
+### 真实实测
+
+当前环境通过本地检查与非破坏性验收后，就可以安排真实最小闭环实测。真实实测会创建飞书资源，必须按 [真实实测 Runbook](docs/真实实测Runbook.md) 执行，并分两次确认：
+
+1. 用户确认进入真实实测：允许读取真实妙记、生成确认草稿、做重复分发检查。
+2. 用户确认真实执行：只按确认草稿中的条目创建任务、文档、报告或消息。
 
 ### 使用
 
@@ -145,6 +183,8 @@ lark-dispatch/
 ```
 
 Agent 会自动执行 6 步流程，在 Step 4 展示提取结果等你确认。
+
+确认草稿示例见 [demo/confirmation-draft.md](demo/confirmation-draft.md)。真实执行前，Agent 还会搜索同会议标题或妙记 token 的历史分发报告；若发现疑似重复分发，必须再次询问用户是否继续。
 
 #### 主动触发 Demo（OpenClaw cron 定时触发）
 
@@ -180,6 +220,25 @@ Agent 会自动执行 6 步流程，在 Step 4 展示提取结果等你确认。
 - `task`、`docs`、`wiki`、`im` dry-run 均通过，证据位于 `docs/assets/phase4/`
 - OpenClaw 已更新到 2026.5.2；cron isolated session 已成功读取真实飞书妙记并生成确认草稿，证据见 `docs/assets/phase4/cron-fix-summary-2026-05-03.md`
 - 同日手动触发同一 Skill 流程完成真实飞书闭环：任务、bot IM、知识沉淀文档、分发报告均已创建成功
+
+2026-05-09 非破坏性复测：
+- `lark-cli --version`：1.0.27
+- `openclaw --version`：OpenClaw 2026.5.2
+- `vc +notes` 可读取样例妙记并返回 `ok=true`；当在线 AI 产物缺少 `chapters/todos` 时，流程使用逐字稿 fallback 并在确认草稿中标注来源
+- `task`、`docs`、`wiki`、`im`、`drive` 写入类命令均通过 `--dry-run` 验证，未创建真实资源
+- `openclaw cron list` 无启用任务；`openclaw cron list --all` 可看到历史 disabled 任务，属于已停用证据记录，不会主动触发
+
+2026-05-10 真实最小闭环实测：
+- 输入会议：威海OPC共创，妙记 token `obcn27xt34ox9s245x877j56`
+- 执行范围：主闭环只执行 1 条未分配任务、1 份知识沉淀文档、1 份分发报告，按用户确认跳过 IM；随后用户单独确认后补测 1 条 bot IM
+- 飞书任务创建成功：https://applink.feishu.cn/client/todo/detail?guid=31540b59-3d1e-4dc0-9373-9429fcddcfd5
+- 知识沉淀文档创建成功：https://www.feishu.cn/docx/KbPDd9YryofBZgxHUW0cFBZnnhf
+- 分发报告文档创建并更新成功：https://www.feishu.cn/docx/F7Esdur9EoVGGXxPYizcBeAKnbf
+- bot IM 补测成功：message_id `om_x100b50c888c774a4c3700aafb8fcaae`，chat_id `oc_1942d821be9157fea4eee1780e85e5b8`
+- docs v2 真实创建并 overwrite 更新成功：https://mxevfgxd6ba.feishu.cn/docx/QcCqdXBKSo94SOxctG8cbevGnZf
+- 第三方/群聊 bot IM 已实测受阻：目标 `oc_ca2752dd467518a5b5c5bddf77676ef9` 返回 bot 不在会话中，需要先加 bot 入会话或提供 `ou_` open_id
+- 已记录本地 registry：`docs/assets/live-runs.jsonl`
+- 完整证据见 `docs/assets/live-2026-05-10/summary.md`；最终检查为 `check-docs` 56 ok、`check-docs-api` 4 ok、`smoke-test` 23 ok / 1 warning、`git diff --check` 通过
 
 2026-04-28 在本机完成一次非破坏性验证：
 - `lark-cli --version`：1.0.20

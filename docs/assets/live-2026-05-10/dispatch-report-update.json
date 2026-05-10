@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "identity": "user",
+  "data": {
+    "doc_id": "F7Esdur9EoVGGXxPYizcBeAKnbf",
+    "log_id": "20260510075345AACAD1CD0CA765DC74C4",
+    "message": "文档更新成功（overwrite模式）",
+    "mode": "overwrite",
+    "success": true
+  }
+}
